@@ -13,7 +13,7 @@ You can find here details about the product, from a high-level vision to low-lev
   * [UI Mockups](https://github.com/FEUP-LEIC-ES-2022-23/2LEIC14T4/blob/main/images/Mockups.png)
 * Architecture and Design
   * [Logical architecture]
-  * [Physical architecture]
+  * [Physical architecture](https://github.com/FEUP-LEIC-ES-2022-23/2LEIC14T4/blob/main/images/PhysicalArchitecture.png)
   * [Vertical prototype](https://github.com/FEUP-LEIC-ES-2022-23/2LEIC14T4/tree/main/app)
 * Implementation
 * Test
