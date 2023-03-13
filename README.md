@@ -14,7 +14,7 @@ You can find here details about the product, from a high-level vision to low-lev
 * Architecture and Design
   * [Logical architecture]
   * [Physical architecture]
-  * [Vertical prototype]
+  * [Vertical prototype](https://github.com/FEUP-LEIC-ES-2022-23/2LEIC14T4/tree/main/app)
 * Implementation
 * Test
 * Configuration and change management
