@@ -10,10 +10,11 @@ You can find here details about the product, from a high-level vision to low-lev
 * Requirements
   * [User stories](https://github.com/orgs/FEUP-LEIC-ES-2022-23/projects/57)
   * [Domain model](https://github.com/FEUP-LEIC-ES-2022-23/2LEIC14T4/blob/main/images/Domain%20Model.png)
+  * [UI Mockups](https://github.com/FEUP-LEIC-ES-2022-23/2LEIC14T4/blob/main/images/Mockups.png)
 * Architecture and Design
   * [Logical architecture]
   * [Physical architecture]
-  * [Vertical prototype](https://github.com/FEUP-LEIC-ES-2022-23/2LEIC14T4/blob/main/images/Mockups.png)
+  * [Vertical prototype]
 * Implementation
 * Test
 * Configuration and change management
