@@ -24,10 +24,10 @@ Please contact us!
 
 Thank you!
 
-António Rama
-José Francisco Veiga
-Pedro Marcelino
-André Santos
+António Rama,
+José Francisco Veiga,
+Pedro Marcelino,
+André Santos,
 Rodrigo Ribeiro
 
 ---
