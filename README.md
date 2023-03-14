@@ -12,7 +12,7 @@ You can find here details about the product, from a high-level vision to low-lev
   * [Domain model](https://github.com/FEUP-LEIC-ES-2022-23/2LEIC14T4/blob/main/images/Domain%20Model.png)
   * [UI Mockups](https://github.com/FEUP-LEIC-ES-2022-23/2LEIC14T4/blob/main/images/Mockups.png)
 * Architecture and Design
-  * [Logical architecture]
+  * [Logical architecture](https://github.com/FEUP-LEIC-ES-2022-23/2LEIC14T4/blob/main/images/LogicalArchitecture.png)
   * [Physical architecture](https://github.com/FEUP-LEIC-ES-2022-23/2LEIC14T4/blob/main/images/PhysicalArchitecture.png)
   * [Vertical prototype](https://github.com/FEUP-LEIC-ES-2022-23/2LEIC14T4/tree/main/app)
 * Implementation
