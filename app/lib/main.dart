@@ -1,7 +1,13 @@
+// import 'dart:js_util';
+
+import 'package:app/remoteService.dart';
 import 'package:app/search.dart';
 import 'package:flutter/material.dart';
+import 'models/job.dart';
 
 void main() {
+  RemoteService rs = new RemoteService();
+  rs.getPosts();
   runApp(const MyApp());
 }
 
