@@ -7,7 +7,7 @@ import 'models/job.dart';
 
 void main() {
   RemoteService rs = new RemoteService();
-  rs.getPosts();
+  rs.getJobsList();
   runApp(const MyApp());
 }
 

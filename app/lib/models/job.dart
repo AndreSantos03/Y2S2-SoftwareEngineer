@@ -1,7 +1,9 @@
 class Job{
 
   int id;
-  int companyID;
+  int companyId;
+  String companyName;
+  String companyLogo;
   String title;
   String body;
   String ref;
@@ -15,7 +17,9 @@ class Job{
 
   Job({
     this.id = 0,
-    this.companyID = 0,
+    this.companyId = 0,
+    this.companyName = '',
+    this.companyLogo = '',
     this.title = "",
     this.body = "",
     this.ref = "",
