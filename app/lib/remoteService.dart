@@ -1,7 +1,8 @@
-import 'dart:convert';
 import 'models/job.dart';
+import 'models/company.dart';
+
+import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:dart_numerics/dart_numerics.dart' as numerics;
 
 class RemoteService {
 
@@ -29,12 +30,23 @@ class RemoteService {
       //200 is the OK response code
       dynamic json = jsonDecode(response.body);
       for (var i = 0; i < json['results'].length; i++) {
+
         Map<String, dynamic> jsonJob = json['results'][i];
+        Map<String, dynamic> jsonCompany = json['results'][i]['company'];
+        
+        Company jobCompany = Company(
+          id: jsonCompany['id'],
+          name: jsonCompany['name'],
+          logo: jsonCompany['body'],
+          description: jsonCompany['description'],
+          phone: jsonCompany['phone'],
+          email: jsonCompany['email'],
+          url: jsonCompany['url'],
+          slug: jsonCompany['slug'],
+        );
+
         Job newJob = Job(
           id: jsonJob['id'],
-          companyId: jsonJob['company']['id'],
-          companyLogo: jsonJob['company']['logo'],
-          companyName: jsonJob['company']['name'],
           title: jsonJob['title'],
           body: jsonJob['body'],
           ref: jsonJob['ref'],
@@ -45,8 +57,8 @@ class RemoteService {
           publishedAt: jsonJob['publishedAt'],
           updatedAt: jsonJob['updatedAt'],
           slug: jsonJob['slug'],
+          company: jobCompany,
         );
-        print(newJob.wage);
         retList.add(newJob);
       }
     }
