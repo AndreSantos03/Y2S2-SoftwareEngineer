@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:myapp/page-1/map-screen.dart';
+import 'package:myapp/page-1/offers-screen.dart';
 import 'package:myapp/utils.dart';
 
 class UserScreen extends StatelessWidget {
@@ -40,16 +41,6 @@ class UserScreen extends StatelessWidget {
                     // FDX (18:27)
                     margin: EdgeInsets.fromLTRB(
                         0 * fem, 0 * fem, 218 * fem, 0 * fem),
-                    child: Text(
-                      '13:40',
-                      style: SafeGoogleFont(
-                        'Poppins',
-                        fontSize: 20 * ffem,
-                        fontWeight: FontWeight.w700,
-                        height: 1.5 * ffem / fem,
-                        color: Color(0xffffffff),
-                      ),
-                    ),
                   ),
                   Container(
                     // iconsignalWfF (18:32)
@@ -214,16 +205,24 @@ class UserScreen extends StatelessWidget {
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  Container(
-                    // buttonofferspof (17:4)
-                    margin: EdgeInsets.fromLTRB(
-                        0 * fem, 0 * fem, 89 * fem, 0 * fem),
-                    width: 64 * fem,
-                    height: 64 * fem,
-                    child: Image.asset(
-                      'assets/page-1/images/buttonoffers-4SR.png',
+                  TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const OffersScreen()));
+                    },
+                    child: Container(
+                      // buttonofferspof (17:4)
+                      margin: EdgeInsets.fromLTRB(
+                          0 * fem, 0 * fem, 89 * fem, 0 * fem),
                       width: 64 * fem,
                       height: 64 * fem,
+                      child: Image.asset(
+                        'assets/page-1/images/buttonoffers-4SR.png',
+                        width: 64 * fem,
+                        height: 64 * fem,
+                      ),
                     ),
                   ),
                   TextButton(
