@@ -6,8 +6,6 @@ import 'package:flutter/material.dart';
 import 'models/job.dart';
 
 void main() {
-  RemoteService rs = new RemoteService();
-  rs.getJobsList();
   runApp(const MyApp());
 }
 
