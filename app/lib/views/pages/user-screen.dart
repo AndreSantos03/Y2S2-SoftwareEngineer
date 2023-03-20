@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:myapp/page-1/map-screen.dart';
-import 'package:myapp/page-1/offers-screen.dart';
+import 'map-screen.dart';
+import 'offers-screen.dart';
 import 'package:myapp/utils.dart';
 
 class UserScreen extends StatelessWidget {

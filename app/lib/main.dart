@@ -3,10 +3,8 @@ import 'package:flutter/gestures.dart';
 import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:myapp/utils.dart';
-import 'package:myapp/page-1/map-screen.dart';
-// import 'package:myapp/page-1/user-screen.dart';
-// import 'package:myapp/page-1/g.dart';
-// import 'package:myapp/page-1/offers-screen.dart';
+import 'package:myapp/views/pages/map-screen.dart';
+
 
 void main() => runApp(MyApp());
 

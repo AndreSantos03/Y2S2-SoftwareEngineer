@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:myapp/page-1/map-screen.dart';
-import 'package:myapp/page-1/user-screen.dart';
+import 'map-screen.dart';
+import 'user-screen.dart';
 import 'package:myapp/utils.dart';
 
 class OffersScreen extends StatelessWidget {

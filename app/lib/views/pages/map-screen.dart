@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:myapp/page-1/offers-screen.dart';
-import 'package:myapp/page-1/user-screen.dart';
+import 'offers-screen.dart';
+import 'user-screen.dart';
 
 class MapScreen extends StatelessWidget {
   const MapScreen({super.key});
