@@ -23,7 +23,7 @@ class _TestScreenState extends State<TestScreen> {
 
   getData() async {
     // getJobsList is not yet functional
-    // jobs = RemoteService().getJobsList();
+    jobs = await RemoteService().getJobs();
     if (jobs != null) {
       setState(() {
         isLoaded = true;
@@ -35,14 +35,15 @@ class _TestScreenState extends State<TestScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('Posts'),
+          title: const Text('Posts'),
         ),
-        // Currently it is just printing 10 'Hi'. the idea is to test the API
-        // so that we can see if it's working before using it in the actual UI
-        body: ListView.builder(
-            itemCount: 10,
+        body: isLoaded
+            ? ListView.builder(
+            itemCount: jobs?.length,
             itemBuilder: (context, index) {
-              return Container(child: Text('Hi'));
-            }));
+              return Text(jobs![index].title ?? '');
+            })
+            : const Center(child: CircularProgressIndicator()));
   }
+
 }

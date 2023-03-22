@@ -1,7 +1,6 @@
 import 'company.dart';
 
-class Job{
-
+class Job {
   // ? -> optional / nullable
   int id;
   String? title;
@@ -31,39 +30,41 @@ class Job{
     this.company,
   });
 
-  factory Job.fromJson(dynamic json){
-    Map<String, dynamic> jsonCompany = json['company'];
-
-    Company jobCompany = Company(
-      id: jsonCompany['id'],
-      name: jsonCompany['name'],
-      logo: jsonCompany['body'],
-      description: jsonCompany['description'],
-      phone: jsonCompany['phone'],
-      email: jsonCompany['email'],
-      url: jsonCompany['url'],
-      slug: jsonCompany['slug'],
-    );
-
+  factory Job.fromJson(Map<String, dynamic> json) {
     return Job(
       id: json['id'],
-      title: json['title'],
+      title: json['title'] ,
       body: json['body'],
-      ref: json['ref'],
+      ref: json['ref'].toString(), // for some reason ref sometimes is int :/
       wage: json['wage'],
-      typeId: json['typeId'],
-      locationId: json['locationId'],
-      allowRemote: json['allowRemote'],
-      publishedAt: json['publishedAt'],
-      updatedAt: json['updatedAt'],
+      typeId: json['type_id'],
+      locationId: json['location_id'],
+      allowRemote: json['allow_remote'],
+      publishedAt: json['published_at'],
+      updatedAt: json['updated_at'],
       slug: json['slug'],
-      company: jobCompany,
+      company: Company.fromJson(json['company'] as Map<String, dynamic>),
     );
   }
+}
 
-  static List<Job> jobsFromSnapshot(List snapshot){
-    return snapshot.map((data){
-      return Job.fromJson(data);
-    }).toList();
+
+class Company {
+  int? id;
+  String? name;
+  String? logoUrl;
+
+  Company({
+    this.id,
+    this.name,
+    this.logoUrl,
+  });
+
+  factory Company.fromJson(Map<String, dynamic> json) {
+    return Company(
+      id: json['id'],
+      name: json['name'],
+      logoUrl: json['logo_url'],
+    );
   }
 }
