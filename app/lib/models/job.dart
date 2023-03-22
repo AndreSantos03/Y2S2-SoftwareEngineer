@@ -2,7 +2,8 @@ import 'company.dart';
 
 class Job{
 
-  int? id;
+  // ? -> optional / nullable
+  int id;
   String? title;
   String? body;
   String? ref;
@@ -15,7 +16,8 @@ class Job{
   String? slug;
   Company? company;
 
-  Job({this.id,
+  Job({
+    required this.id,
     this.title,
     this.body,
     this.ref,
