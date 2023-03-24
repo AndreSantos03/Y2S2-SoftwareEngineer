@@ -10,7 +10,7 @@ class RemoteService {
   String apiKey = '3b579078bfd604421212c16bc7729440';
 
   // limit value is hard-coded, maybe we change this later
-  Future<List<Job>?> getJobs({int limit = 10000}) async {
+  Future<List<Job>?> getJobs({int limit = 5000}) async {
     var client = http.Client();
 
     var uri = Uri.https(authority, '/job/list.json', {'api_key': apiKey, 'limit': limit.toString()});

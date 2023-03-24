@@ -3,7 +3,7 @@ import 'package:myapp/utils.dart';
 import 'package:myapp/views/pages/map-screen.dart';
 import 'package:myapp/views/pages/test-screen.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const TestScreen(),
+      home: const MapScreen(),
     );
   }
 }
