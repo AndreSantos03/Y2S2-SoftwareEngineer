@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:myapp/views/widgets/district.dart';
 import 'offers-screen.dart';
 import 'user-screen.dart';
 
@@ -10,8 +11,8 @@ class MapScreen extends StatelessWidget {
     double baseWidth = 430;
     double fem = MediaQuery.of(context).size.width / baseWidth;
     double ffem = fem * 0.97;
-    return SizedBox(
-      width: double.infinity,
+    List<int> districtIdList = [1,3,4,5,6,8,10,11,12,13,14,16,17,18,20,21,22];
+    return SizedBox(      width: double.infinity,
       child: Container(
         // mapscreenH89 (1:2)
         padding: EdgeInsets.fromLTRB(0 * fem, 22 * fem, 0 * fem, 26 * fem),
@@ -29,6 +30,12 @@ class MapScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+         /* ListView.builder(
+          itemCount: districtIdList.length,
+            itemBuilder: (BuildContext context, int index) {
+              return DistrictImage(districtId: districtIdList[index]);
+            },
+          ),*/
             Container(
               // autogroup5kkun6q (VjgBq1xHhWzeczZMEe5kku)
               margin:
@@ -77,7 +84,7 @@ class MapScreen extends StatelessWidget {
               width: 556 * fem,
               height: 601 * fem,
               child: Image.asset(
-                'assets/page-1/images/imagemap.png',
+                'assets/page-1/images/portugal.png',
                 width: 556 * fem,
                 height: 601 * fem,
               ),

@@ -96,6 +96,26 @@ flutter:
     - assets/page-1/images/iconsignal-qGq.png
     - assets/page-1/images/vector-Kt1.png
     - assets/page-1/images/buttonsettings.png
+    - assets/page-1/images/1.png
+    - assets/page-1/images/3.png
+    - assets/page-1/images/4.png
+    - assets/page-1/images/5.png
+    - assets/page-1/images/6.png
+    - assets/page-1/images/8.png
+    - assets/page-1/images/9.png
+    - assets/page-1/images/10.png
+    - assets/page-1/images/11.png
+    - assets/page-1/images/12.png
+    - assets/page-1/images/13.png
+    - assets/page-1/images/14.png
+    - assets/page-1/images/16.png
+    - assets/page-1/images/17.png
+    - assets/page-1/images/18.png
+    - assets/page-1/images/20.png
+    - assets/page-1/images/21.png
+    - assets/page-1/images/22.png
+    - assets/page-1/images/portugal.png
+
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
