@@ -15,7 +15,7 @@ class UserScreen extends StatelessWidget {
       width: double.infinity,
       child: Container(
         // userscreenxrh (9:55)
-        padding: EdgeInsets.fromLTRB(36 * fem, 22 * fem, 29 * fem, 26 * fem),
+        padding: EdgeInsets.fromLTRB(20, 20 , 20 , 20),
         width: double.infinity,
         decoration: const BoxDecoration(
           color: Color(0xaf6389eb),
@@ -32,8 +32,8 @@ class UserScreen extends StatelessWidget {
             Container(
               // autogrouptqmtxVK (4ZVp42PeU6ZvZHBTDUTQmT)
               margin:
-                  EdgeInsets.fromLTRB(12 * fem, 0 * fem, 0 * fem, 248 * fem),
-              height: 30 * fem,
+                  EdgeInsets.fromLTRB(6 * fem, 0 * fem, 0 * fem, 248 * fem),
+              height: 5 * fem,
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [

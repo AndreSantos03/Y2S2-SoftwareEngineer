@@ -1,159 +1,163 @@
 import 'package:flutter/material.dart';
-import 'offers-screen.dart';
-import 'user-screen.dart';
+import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:myapp/views/pages/user-screen.dart';
+import 'package:myapp/views/pages/offers-screen.dart';
 
-class MapScreen extends StatelessWidget {
-  const MapScreen({super.key});
+class MapScreen extends StatefulWidget {
+  const MapScreen({Key? key});
 
   @override
+  State<MapScreen> createState() => _MapScreenState();
+}
+
+class _MapScreenState extends State<MapScreen> {
+  @override
   Widget build(BuildContext context) {
-    double baseWidth = 430;
-    double fem = MediaQuery.of(context).size.width / baseWidth;
-    double ffem = fem * 0.97;
-    return SizedBox(
-      width: double.infinity,
-      child: Container(
-        // mapscreenH89 (1:2)
-        padding: EdgeInsets.fromLTRB(0 * fem, 22 * fem, 0 * fem, 26 * fem),
-        // default -> 0*fem, 22*fem, 0*fem, 26*fem
-        width: double.infinity,
-        decoration: const BoxDecoration(
-          color: Color(0xaf6389eb),
-          gradient: LinearGradient(
-            begin: Alignment(0, -1),
-            end: Alignment(0, 1),
-            colors: <Color>[Color(0x33e11313), Color(0x33e11313)],
-            stops: <double>[0, 1],
-          ),
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Container(
-              // autogroup5kkun6q (VjgBq1xHhWzeczZMEe5kku)
-              margin:
-                  EdgeInsets.fromLTRB(48 * fem, 0 * fem, 29 * fem, 19 * fem),
-              width: double.infinity,
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-              ),
-            ),
-            Container(
-              // autogroupskhxh9F (VjgCCqfG3kBW5ADq7CSKhX)
-              margin:
-                  EdgeInsets.fromLTRB(18 * fem, 0 * fem, 11 * fem, 47 * fem),
-              width: double.infinity,
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Container(
-                    // buttonfilterngV (4:48)
-                    margin: EdgeInsets.fromLTRB(
-                        0 * fem, 0 * fem, 318 * fem, 1 * fem),
-                    width: 36 * fem,
-                    height: 36 * fem,
-                    child: Image.asset(
-                      'assets/page-1/images/buttonfilter.png',
-                      width: 36 * fem,
-                      height: 36 * fem,
-                    ),
-                  ),
-                  Container(
-                    // buttonsettings4e1 (17:3)
-                    width: 47 * fem,
-                    height: 47 * fem,
-                    child: Image.asset(
-                      'assets/page-1/images/buttonsettings.png',
-                      width: 47 * fem,
-                      height: 47 * fem,
-                    ),
-                  ),
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
+
+    final double filter_settings_x_offset = 60;
+    final double filter_settings_y_offset = 40;
+    return Scaffold(
+      body: Stack(
+        children: [
+          // Gradient background
+          Container(
+            height: screenHeight,
+            decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment(0, -7),
+                end: Alignment.bottomCenter,
+                colors: [
+                  Color.fromRGBO(225, 20, 20, 0.2),
+                  Color.fromRGBO(99, 138, 236, 0.69),
                 ],
               ),
             ),
-            Container(
-              // imagemapNPo (4:39)
-              margin: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 0 * fem, 68 * fem),
-              width: 556 * fem,
-              height: 601 * fem,
-              child: Image.asset(
-                'assets/page-1/images/imagemap.png',
-                width: 556 * fem,
-                height: 601 * fem,
-              ),
-            ),
-            Container(
-              // autogroupd37jf81 (VjgCLvG8aFridCuyeyd37j)
-              margin: EdgeInsets.fromLTRB(36 * fem, 0 * fem, 29 * fem, 0 * fem),
-              width: double.infinity,
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  Container(
-                    // ButtonOffers
-                    margin: EdgeInsets.fromLTRB(
-                        0 * fem, 0 * fem, 60 * fem, 0 * fem),
-                    // 87*fem was giving overflow
-                    child: TextButton(
-                      onPressed: () {
-                        // Changes to the other screen
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const OffersScreen()),
-                        );
-                      },
-                      child: SizedBox(
-                        width: 64 * fem, //64 * fem
-                        height: 64 * fem, //64 * fem
-                        child: Image.asset(
-                          'assets/page-1/images/buttonoffers.png',
-                          width: 64 * fem,
-                          height: 64 * fem,
-                        ),
-                      ),
-                    ),
+          ),
+          Positioned(
+            left: 0, // keeps centered
+            right: 0, // keeps centered
+            bottom: 20,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+
+                // button_offers
+                TextButton(
+                  onPressed: () {
+                    // Changes to the other screen
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const OffersScreen()),
+                    );
+                  },
+                  child: SizedBox (
+                  width: screenWidth * 0.23,
+                  height: screenWidth * 0.23,
+                  child: Image.asset(
+                    'assets/page-1/images/buttonoffers.png',
+                    width: screenWidth * 0.23,
+                    height: screenWidth * 0.23,
                   ),
-                  Container(
-                    // buttonmapcSZ (17:7)
-                    margin: EdgeInsets.fromLTRB(
-                        0 * fem, 0 * fem, 78 * fem, 0 * fem),
-                    width: 72 * fem,
-                    height: 72 * fem,
+                ),
+                ),
+                const SizedBox(width: 70), // add spacing between images
+                // button_map
+                  SizedBox(
+                    width: screenWidth * 0.12,
+                    height: screenWidth * 0.12,
                     child: Image.asset(
                       'assets/page-1/images/buttonmap.png',
-                      width: 72 * fem,
-                      height: 72 * fem,
+                      width: screenWidth * 0.12,
+                      height: screenWidth * 0.12,
                     ),
                   ),
-                  TextButton(
-                    // buttonuser6Mj (4:42)
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const UserScreen()),
-                      );
-                    },
-                    style: TextButton.styleFrom(
-                      padding: EdgeInsets.zero,
-                    ),
-                    child: Container(
-                      width: 64 * fem,
-                      height: 64 * fem,
-                      child: Image.asset(
-                        'assets/page-1/images/buttonuser.png',
-                        width: 64 * fem,
-                        height: 64 * fem,
-                      ),
+                const SizedBox(width: 70), // add spacing between images
+                // button_user
+                TextButton(
+                  onPressed: () {
+                    // Changes to the other screen
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const UserScreen()),
+                    );
+                  },
+                  child: SizedBox(
+                    width: screenWidth * 0.155,
+                    height: screenWidth * 0.155,
+                    child: Image.asset(
+                      'assets/page-1/images/buttonuser.png',
+                      width: screenWidth * 0.155,
+                      height: screenWidth * 0.155,
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
-          ],
-        ),
+          ),
+          Positioned(
+              left: filter_settings_x_offset, // keeps centered
+              top: filter_settings_y_offset,
+              child: TextButton(
+                onPressed: () {
+                  // Changes to the other screen
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const OffersScreen()),
+                  );
+                },
+                child: SizedBox (
+                  width: screenWidth * 0.10,
+                  height: screenWidth * 0.10,
+                  child: Image.asset(
+                    'assets/page-1/images/buttonfilter.png',
+                    width: screenWidth * 0.10,
+                    height: screenWidth * 0.10,
+                  ),
+                ),
+              )
+          ),
+          Positioned(
+              right: filter_settings_x_offset, // keeps centered
+              top: filter_settings_y_offset,
+              child: TextButton(
+                onPressed: () {
+                  // Changes to the other screen
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const OffersScreen()),
+                  );
+                },
+                child: SizedBox (
+                  width: screenWidth * 0.10,
+                  height: screenWidth * 0.10,
+                  child: Image.asset(
+                    'assets/page-1/images/buttonsettings.png',
+                    width: screenWidth * 0.10,
+                    height: screenWidth * 0.10,
+                  ),
+                ),
+              )
+          ),
+          Positioned(
+            left: 0,
+            top : 0,
+            bottom: 0,
+            child: Image.asset(
+              'assets/page-1/images/imagemap.png',
+              width: screenWidth,
+              height: screenWidth,
+            )
+          )
+        ],
       ),
+      backgroundColor: Colors.black,
     );
   }
 }
