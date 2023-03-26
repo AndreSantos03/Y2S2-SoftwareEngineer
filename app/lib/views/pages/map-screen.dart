@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:myapp/views/pages/user-screen.dart';
 import 'package:myapp/views/pages/offers-screen.dart';
+import 'package:myapp/views/pages/user-screen.dart';
 
 class MapScreen extends StatefulWidget {
-  const MapScreen({Key? key});
+  const MapScreen({Key? key}) : super(key: key);
 
   @override
   State<MapScreen> createState() => _MapScreenState();
@@ -17,8 +15,8 @@ class _MapScreenState extends State<MapScreen> {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
 
-    final double filter_settings_x_offset = 60;
-    final double filter_settings_y_offset = 40;
+    const double filter_settings_x_offset = 60;
+    const double filter_settings_y_offset = 40;
     return Scaffold(
       body: Stack(
         children: [
@@ -43,7 +41,6 @@ class _MapScreenState extends State<MapScreen> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-
                 // button_offers
                 TextButton(
                   onPressed: () {
@@ -54,27 +51,27 @@ class _MapScreenState extends State<MapScreen> {
                           builder: (context) => const OffersScreen()),
                     );
                   },
-                  child: SizedBox (
-                  width: screenWidth * 0.23,
-                  height: screenWidth * 0.23,
-                  child: Image.asset(
-                    'assets/page-1/images/buttonoffers.png',
+                  child: SizedBox(
                     width: screenWidth * 0.23,
                     height: screenWidth * 0.23,
+                    child: Image.asset(
+                      'assets/page-1/images/buttonoffers.png',
+                      width: screenWidth * 0.23,
+                      height: screenWidth * 0.23,
+                    ),
                   ),
-                ),
                 ),
                 const SizedBox(width: 70), // add spacing between images
                 // button_map
-                  SizedBox(
+                SizedBox(
+                  width: screenWidth * 0.12,
+                  height: screenWidth * 0.12,
+                  child: Image.asset(
+                    'assets/page-1/images/buttonmap.png',
                     width: screenWidth * 0.12,
                     height: screenWidth * 0.12,
-                    child: Image.asset(
-                      'assets/page-1/images/buttonmap.png',
-                      width: screenWidth * 0.12,
-                      height: screenWidth * 0.12,
-                    ),
                   ),
+                ),
                 const SizedBox(width: 70), // add spacing between images
                 // button_user
                 TextButton(
@@ -99,33 +96,35 @@ class _MapScreenState extends State<MapScreen> {
               ],
             ),
           ),
+          // row de filtro e settings
           Positioned(
-              left: filter_settings_x_offset, // keeps centered
-              top: filter_settings_y_offset,
-              child: TextButton(
-                onPressed: () {
-                  // Changes to the other screen
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const OffersScreen()),
-                  );
-                },
-                child: SizedBox (
-                  width: screenWidth * 0.10,
-                  height: screenWidth * 0.10,
-                  child: Image.asset(
-                    'assets/page-1/images/buttonfilter.png',
-                    width: screenWidth * 0.10,
-                    height: screenWidth * 0.10,
+            left: 0,
+            right: 0,
+            top: screenHeight / 12,
+            child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  TextButton(
+                    onPressed: () {
+                      // Changes to the other screen
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const OffersScreen()),
+                      );
+                    },
+                    child: SizedBox(
+                      width: screenWidth * 0.10,
+                      height: screenWidth * 0.10,
+                      child: Image.asset(
+                        'assets/page-1/images/buttonfilter.png',
+                        width: screenWidth * 0.10,
+                        height: screenWidth * 0.10,
+                      ),
+                    ),
                   ),
-                ),
-              )
-          ),
-          Positioned(
-              right: filter_settings_x_offset, // keeps centered
-              top: filter_settings_y_offset,
-              child: TextButton(
+                  SizedBox(width: screenWidth - screenWidth / 2.5),
+              TextButton(
                 onPressed: () {
                   // Changes to the other screen
                   Navigator.push(
@@ -134,7 +133,7 @@ class _MapScreenState extends State<MapScreen> {
                         builder: (context) => const OffersScreen()),
                   );
                 },
-                child: SizedBox (
+                child: SizedBox(
                   width: screenWidth * 0.10,
                   height: screenWidth * 0.10,
                   child: Image.asset(
@@ -143,19 +142,21 @@ class _MapScreenState extends State<MapScreen> {
                     height: screenWidth * 0.10,
                   ),
                 ),
-              )
+              ),
+            ]),
           ),
           Positioned(
-            left: 0,
-            top : 0,
-            bottom: 0,
-            child: Image.asset(
-              'assets/page-1/images/imagemap.png',
-              width: screenWidth,
-              height: screenWidth,
-            )
+            left : 0,
+            right : 0,
+            top: screenHeight / 4,
+            child: SizedBox(
+                child: Image.asset(
+                  'assets/page-1/images/imagemap.png',
+                  width: screenWidth,
+                  height: screenWidth,
+                )),
           )
-        ],
+        ]
       ),
       backgroundColor: Colors.black,
     );
