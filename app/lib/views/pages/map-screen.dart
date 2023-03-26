@@ -147,7 +147,7 @@ class _MapScreenState extends State<MapScreen> {
           ),
           Positioned(
             left: 0,
-            top : 0,
+            top: 0,
             bottom: 0,
             child: Image.asset(
               'assets/page-1/images/imagemap.png',
@@ -155,7 +155,7 @@ class _MapScreenState extends State<MapScreen> {
               height: screenWidth,
             )
           )
-        ],
+        ]
       ),
       backgroundColor: Colors.black,
     );
