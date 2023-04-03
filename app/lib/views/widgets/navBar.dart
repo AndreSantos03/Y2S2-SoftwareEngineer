@@ -16,12 +16,15 @@ class _NavBarState extends State<NavBar> {
 
   @override
   Widget build(BuildContext context) {
+
+    double screenWidth = MediaQuery.of(context).size.width;
+
     int currentPageIndex = widget.pageNumber;
     return GNav(
       backgroundColor: const Color.fromRGBO(99, 138, 236, 0.69),
       color: Colors.white70,
       activeColor: Colors.white,
-      iconSize: 30,
+      iconSize: screenWidth / 12,
       selectedIndex: currentPageIndex,
       tabs: [
         GButton(

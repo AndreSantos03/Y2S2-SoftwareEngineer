@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:myapp/views/pages/offers-screen.dart';
+import 'package:myapp/views/widgets/mapImage.dart';
 import 'package:myapp/views/widgets/gradientBackground.dart';
 import 'package:myapp/views/widgets/navBar.dart';
 
@@ -15,6 +16,7 @@ class _MapScreenState extends State<MapScreen> {
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
+    double aspectRatio = MediaQuery.of(context).size.aspectRatio;
 
     return Scaffold(
       bottomNavigationBar: const NavBar(
@@ -68,17 +70,7 @@ class _MapScreenState extends State<MapScreen> {
             ),
           ]),
         ),
-        Positioned(
-          left: 0,
-          right: 0,
-          top: screenHeight / 4,
-          child: SizedBox(
-              child: Image.asset(
-            'assets/page-1/images/imagemap.png',
-            width: screenWidth,
-            height: screenWidth,
-          )),
-        )
+        const MapImage(),
       ]),
       backgroundColor: Colors.black,
     );

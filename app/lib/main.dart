@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:myapp/utils.dart';
 import 'package:myapp/views/pages/map-screen.dart';
+import 'package:myapp/views/pages/discrict-screen.dart';
 import 'package:myapp/views/pages/test-screen.dart';
 
 void main() => runApp(const MyApp());
