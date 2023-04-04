@@ -9,9 +9,23 @@ class DistrictScreen extends StatelessWidget {
   DistrictScreen({Key? key, required this.id}) : super(key: key);
 
   Map<int, String> idDistrict = {
+    1: 'Aveiro',
+    3: 'Beja',
     4: 'Braga',
+    5: 'Bragança',
+    6: 'Castelo Branco',
+    8: 'Coimbra',
+    9: 'Faro',
+    10: 'Évora',
+    11: 'Guarda',
+    12: 'Portalegre',
+    13: 'Leiria',
     14: 'Lisboa',
+    16: 'Viseu',
+    17: 'Setúbal',
     18: 'Porto',
+    20: 'Santarém',
+    21: 'Vila Real',
     22: 'Viana do Castelo',
   };
 
