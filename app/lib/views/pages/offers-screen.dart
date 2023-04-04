@@ -47,12 +47,28 @@ class _OffersScreenState extends State<OffersScreen> {
         children: [
           // Grading background
           GradientBackground(screenHeight: screenHeight),
+          // Number of results
+          Positioned(
+            top: screenHeight * 0.27,
+            left: screenWidth * 0.1,
+            child: Text(
+              '${jobs?.length ?? '0'} resultados',
+              textAlign: TextAlign.center,
+              style: SafeGoogleFont(
+                'Poppins',
+                fontSize: 18,
+                fontWeight: FontWeight.w700,
+                height: 1.3,
+                color: const Color(0xffffffff),
+              ),
+            ),
+          ),
           isLoaded
               // scroll jobs
               ? Positioned(
                   left: screenWidth / 2 - screenWidth * 0.4,
                   // this last part should be half of the value we multiply in the width so it is centered
-                  top: screenHeight * 0.26,
+                  top: screenHeight * 0.3,
                   height: screenHeight * 0.60,
                   width: screenWidth * 0.8,
                   child: ListView.builder(

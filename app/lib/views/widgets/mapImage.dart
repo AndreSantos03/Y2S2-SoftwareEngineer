@@ -11,8 +11,6 @@ class MapImage extends StatelessWidget {
     double opacity = 0.0; // testing purposes
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
-    print(screenWidth);
-    print(screenHeight);
 
     return Padding(
       padding: EdgeInsets.only(top: screenHeight * 0.1),
