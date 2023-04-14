@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:myapp/utils.dart';
+import 'package:myapp/views/pages/filter-screen.dart';
 import 'package:myapp/views/pages/map-screen.dart';
 import 'package:myapp/views/pages/discrict-screen.dart';
 import 'package:myapp/views/pages/test-screen.dart';
@@ -18,7 +19,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MapScreen(),
+      home: const FilterScreen(),
     );
   }
 }
