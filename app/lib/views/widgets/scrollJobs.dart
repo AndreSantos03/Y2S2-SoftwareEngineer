@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:myapp/models/job.dart';
 import 'package:myapp/utils.dart';
+import 'package:myapp/views/pages/job-details-screen.dart';
 
 class ScrollJobs extends StatelessWidget {
   List<Job> jobs;
@@ -20,39 +21,50 @@ class ScrollJobs extends StatelessWidget {
       child: ListView.builder(
         itemCount: jobs?.length,
         itemBuilder: (context, index) {
-          return Container(
-            padding: const EdgeInsets.all(25.0),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(25.0),
-              color: const Color.fromRGBO(255, 255, 255, 0.83),
-            ),
-            margin: const EdgeInsets.symmetric(vertical: 4.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  jobs![index].title ?? '',
-                  style: SafeGoogleFont(
-                    'Poppins',
-                    fontSize: 16,
-                    fontWeight: FontWeight.w700,
-                    height: 1.5,
-                    color: const Color(0x93050505),
-                  ),
+          return GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => JobDetailsScreen(job: jobs![index]),
                 ),
-                const SizedBox(height: 5),
-                // add some space between the two Text widgets
-                Text(
-                  jobs![index].company?.name ?? '',
-                  style: SafeGoogleFont(
-                    'Poppins',
-                    fontSize: 14,
-                    fontWeight: FontWeight.w400,
-                    height: 1.5,
-                    color: const Color(0x93050505),
+              );
+            },
+            child: Container(
+              padding: const EdgeInsets.all(25.0),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(25.0),
+                color: const Color.fromRGBO(255, 255, 255, 0.83),
+              ),
+              margin: const EdgeInsets.symmetric(vertical: 4.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    jobs![index].title ?? '',
+                    style: SafeGoogleFont(
+                      'Poppins',
+                      fontSize: 16,
+                      fontWeight: FontWeight.w700,
+                      height: 1.5,
+                      color: const Color(0x93050505),
+                    ),
                   ),
-                ),
-              ],
+                  const SizedBox(height: 5),
+                  // add some space between the two Text widgets
+                  Text(
+                    jobs![index].company?.name ?? '',
+                    style: SafeGoogleFont(
+                      'Poppins',
+                      fontSize: 14,
+                      fontWeight: FontWeight.w400,
+                      height: 1.5,
+                      color: const Color(0x93050505),
+                    ),
+                  ),
+                ],
+              ),
+
             ),
           );
         },

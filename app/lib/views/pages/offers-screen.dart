@@ -64,7 +64,7 @@ class _OffersScreenState extends State<OffersScreen> {
             ),
           ),
           isLoaded
-              // scroll jobs
+          // scroll jobs
               ? ScrollJobs(jobs: jobs!)
               : const Center(child: CircularProgressIndicator()),
           // Text
