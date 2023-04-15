@@ -1,11 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:myapp/utils.dart';
+import 'package:provider/provider.dart';
+import 'package:myapp/models/filter_model.dart';
+import 'package:myapp/models/salary_model.dart';
 
-class FilterPriceWidget extends StatelessWidget {
-  const FilterPriceWidget({Key? key}) : super(key: key);
+class FilterPriceWidget extends StatefulWidget {
+  FilterPriceWidget({Key? key}) : super(key: key);
+
+  @override
+  State<FilterPriceWidget> createState() => _FilterPriceWidgetState();
+}
+
+
+class _FilterPriceWidgetState extends State<FilterPriceWidget> {
+
+  List<bool> isCheckedList = [];
+
+  @override
+  void initState() {
+    super.initState();
+    // Initialize the isCheckedList with false values for each checkbox
+    isCheckedList = List.generate(Salary.salaries.length, (index) => false);
+  }
 
   @override
   Widget build(BuildContext context) {
+
     double screenWidth = MediaQuery
         .of(context)
         .size
@@ -15,14 +35,9 @@ class FilterPriceWidget extends StatelessWidget {
         .size
         .height;
 
-    List<String> salaries = [
-      '€5 000 - €10 000',
-      '€10 000 - €20 000',
-      '€20 000 - €40 000',
-      '€40 000 - €60 000',
-      '€60 000 - €80 000',
-      '€80 000+'
-    ];
+    List<Salary> salaries = Salary.salaries;
+
+    Filter filterParameters = Provider.of<Filter>(context);
 
     return
       Padding(
@@ -64,7 +79,7 @@ class FilterPriceWidget extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              salaries[index],
+                              salaries[index].name,
                               textAlign: TextAlign.center,
                               style: SafeGoogleFont(
                                 'Poppins',
@@ -77,8 +92,33 @@ class FilterPriceWidget extends StatelessWidget {
                             SizedBox(
                               height: 25,
                               child: Checkbox(
-                                value: false,
-                                onChanged: (bool? newValue) {},
+                                value: isCheckedList[index],
+                                onChanged: (bool? newValue) {
+
+                                  setState(() {
+                                    isCheckedList[index] = newValue ?? false;
+                                  });
+
+                                  // Update the salaryFilters list based on the checkbox value
+                                  List<Salary> updatedSalaryFilters = List<Salary>.from(filterParameters.salaryFilters);
+                                  if (newValue == true) {
+                                    // Checkbox is checked, add the selected salary to the filters
+                                    updatedSalaryFilters.add(salaries[index]);
+                                    updatedSalaryFilters.remove(Salary.noFilterSalary[0]);
+                                    print(updatedSalaryFilters); // Print the updated filters
+                                  } else {
+                                    // Checkbox is unchecked, remove the selected salary from the filters
+                                    updatedSalaryFilters.remove(salaries[index]);
+                                    print(updatedSalaryFilters);
+                                  }
+
+                                  // Update the filter parameters with the new salary filters
+                                  Filter newFilter = filterParameters.copyWith(salaryFilters: updatedSalaryFilters);
+
+                                  // Notify the listeners of the change
+                                  print(index);
+                                  Provider.of<Filter>(context, listen: false).updateFilter(newFilter, index, newValue ?? false);
+                                },
                               ),
                             )
                           ],

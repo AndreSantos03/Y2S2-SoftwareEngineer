@@ -6,6 +6,8 @@ import 'package:myapp/views/pages/discrict-screen.dart';
 import 'package:myapp/views/pages/test-screen.dart';
 import 'package:myapp/models/job.dart';
 import 'package:provider/provider.dart';
+import 'package:myapp/models/filter_model.dart';
+import 'package:myapp/models/salary_model.dart';
 
 void main() {
   // Fetch jobs and create JobsProvider instance
@@ -13,8 +15,15 @@ void main() {
   jobsProvider.fetchJobs();
 
   runApp(
-    ChangeNotifierProvider<JobsProvider>.value(
-      value: jobsProvider,
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider<JobsProvider>.value(
+          value: jobsProvider,
+        ),
+        ChangeNotifierProvider<Filter>(
+          create: (context) => Filter(),
+        ),
+      ],
       child: const MyApp(),
     ),
   );

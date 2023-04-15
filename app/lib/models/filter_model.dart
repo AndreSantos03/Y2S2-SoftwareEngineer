@@ -1,21 +1,40 @@
+import 'package:dart_numerics/dart_numerics.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:myapp/models/salary_model.dart';
 
-class Filter extends Equatable {
-  final List<int>
-      salaryFilters; // size = 2 , ex: [5000, 10000] -> 5000 <= salaries < 10000
+class Filter extends ChangeNotifier {
+  late List<Salary> salaryFilters;
+  late bool remote;
 
-  Filter({
-    this.salaryFilters = const <int>[],
-  });
+  Filter({List<Salary>? salaryFilters, bool? remote}) {
+    this.salaryFilters = salaryFilters ?? Salary.noFilterSalary;
+    this.remote = remote ?? false;
+  }
 
   Filter copyWith({
-    List<int>? salaryFilters,
+    List<Salary>? salaryFilters,
+    bool? remote,
   }) {
     return Filter(
       salaryFilters: salaryFilters ?? this.salaryFilters,
+      remote: remote ?? this.remote,
     );
   }
 
-  @override
-  List<Object?> get props => [salaryFilters];
+  void updateFilter(Filter newFilter, int index, bool checked) {
+    // Update the remote filter parameter
+    remote = newFilter.remote;
+
+    if (checked) {
+      // Checkbox is checked, add the selected salary to the filters
+      salaryFilters.add(Salary.salaries[index]);
+    } else {
+      // Checkbox is unchecked, remove the selected salary from the filters
+      salaryFilters.remove(Salary.salaries[index]);
+    }
+
+    // Notify the listeners of the change
+    notifyListeners();
+  }
 }

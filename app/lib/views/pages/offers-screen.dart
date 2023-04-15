@@ -6,6 +6,7 @@ import 'package:myapp/views/widgets/gradientBackground.dart';
 import 'package:myapp/views/widgets/navBar.dart';
 import 'package:myapp/views/widgets/scrollJobs.dart';
 import 'package:provider/provider.dart';
+import 'package:myapp/models/filter_model.dart';
 
 class OffersScreen extends StatefulWidget {
   const OffersScreen({Key? key}) : super(key: key);

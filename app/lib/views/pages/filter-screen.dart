@@ -15,6 +15,7 @@ class FilterScreen extends StatefulWidget {
 class _FilterScreenState extends State<FilterScreen> {
   @override
   Widget build(BuildContext context) {
+
     double screenWidth = MediaQuery
         .of(context)
         .size
@@ -28,7 +29,7 @@ class _FilterScreenState extends State<FilterScreen> {
       body: Stack(
         children: [
           GradientBackground(screenHeight: screenHeight),
-          const FilterPriceWidget(),
+          FilterPriceWidget(),
           const FilterTopWidget(),
           const FilterRemoteWidget(),
         ],
