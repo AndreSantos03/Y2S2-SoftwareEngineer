@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'company.dart';
+import 'package:myapp/remoteService.dart';
 
 class Job {
   // ? -> optional / nullable
@@ -78,5 +79,14 @@ class JobsProvider with ChangeNotifier {
   set jobs(List<Job> value) {
     _jobs = value;
     notifyListeners();
+  }
+
+  RemoteService remoteService = RemoteService();
+
+  Future<void> fetchJobs() async {
+    List<Job>? fetchedJobs = await remoteService.getJobs();
+    _jobs = fetchedJobs!;
+
+    print('jobs loaded');
   }
 }

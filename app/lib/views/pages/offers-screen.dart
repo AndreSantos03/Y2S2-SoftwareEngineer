@@ -5,6 +5,7 @@ import 'package:myapp/utils.dart';
 import 'package:myapp/views/widgets/gradientBackground.dart';
 import 'package:myapp/views/widgets/navBar.dart';
 import 'package:myapp/views/widgets/scrollJobs.dart';
+import 'package:provider/provider.dart';
 
 class OffersScreen extends StatefulWidget {
   const OffersScreen({Key? key}) : super(key: key);
@@ -15,27 +16,13 @@ class OffersScreen extends StatefulWidget {
 
 class _OffersScreenState extends State<OffersScreen> {
   List<Job>? jobs;
-  var isLoaded = false;
-
-  @override
-  void initState() {
-    super.initState();
-
-    // fetch data from API
-    getData();
-  }
-
-  getData() async {
-    jobs = await RemoteService().getJobs();
-    if (jobs != null) {
-      setState(() {
-        isLoaded = true;
-      });
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
+
+    final jobsProvider = Provider.of<JobsProvider>(context);
+    jobs = jobsProvider.jobs;
+
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
 
@@ -63,10 +50,8 @@ class _OffersScreenState extends State<OffersScreen> {
               ),
             ),
           ),
-          isLoaded
               // scroll jobs
-              ? ScrollJobs(jobs: jobs!)
-              : const Center(child: CircularProgressIndicator()),
+              ScrollJobs(jobs: jobs!),
           // Text
           Positioned(
             top: screenHeight * 0.12,

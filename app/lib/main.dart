@@ -4,8 +4,22 @@ import 'package:myapp/views/pages/filter-screen.dart';
 import 'package:myapp/views/pages/map-screen.dart';
 import 'package:myapp/views/pages/discrict-screen.dart';
 import 'package:myapp/views/pages/test-screen.dart';
+import 'package:myapp/models/job.dart';
+import 'package:provider/provider.dart';
 
-void main() => runApp(const MyApp());
+void main() {
+  // Fetch jobs and create JobsProvider instance
+  final jobsProvider = JobsProvider();
+  jobsProvider.fetchJobs();
+
+  runApp(
+    ChangeNotifierProvider<JobsProvider>.value(
+      value: jobsProvider,
+      child: const MyApp(),
+    ),
+  );
+}
+
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
