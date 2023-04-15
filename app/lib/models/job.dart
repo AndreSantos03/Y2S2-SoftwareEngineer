@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'company.dart';
 
 class Job {
@@ -66,5 +67,16 @@ class Company {
       name: json['name'],
       logoUrl: json['logo_url'],
     );
+  }
+}
+
+class JobsProvider with ChangeNotifier {
+  List<Job> _jobs = [];
+
+  List<Job> get jobs => _jobs;
+
+  set jobs(List<Job> value) {
+    _jobs = value;
+    notifyListeners();
   }
 }

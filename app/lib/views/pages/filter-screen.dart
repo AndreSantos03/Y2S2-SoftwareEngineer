@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:myapp/views/widgets/filterRemoteWidget.dart';
 import 'package:myapp/views/widgets/gradientBackground.dart';
 import 'package:myapp/views/widgets/filterTopWidget.dart';
+import 'package:myapp/views/widgets/filterPriceWidget.dart';
+import 'package:myapp/views/widgets/filterRemoteWidget.dart';
 
 class FilterScreen extends StatefulWidget {
   const FilterScreen({Key? key}) : super(key: key);
@@ -25,8 +28,9 @@ class _FilterScreenState extends State<FilterScreen> {
       body: Stack(
         children: [
           GradientBackground(screenHeight: screenHeight),
-          // Top
+          const FilterPriceWidget(),
           const FilterTopWidget(),
+          const FilterRemoteWidget(),
         ],
       ),
       backgroundColor: Colors.black,
