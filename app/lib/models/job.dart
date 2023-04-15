@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'company.dart';
+import 'package:myapp/remoteService.dart';
 
 class Job {
   // ? -> optional / nullable
@@ -66,5 +68,25 @@ class Company {
       name: json['name'],
       logoUrl: json['logo_url'],
     );
+  }
+}
+
+class JobsProvider with ChangeNotifier {
+  List<Job> _jobs = [];
+
+  List<Job> get jobs => _jobs;
+
+  set jobs(List<Job> value) {
+    _jobs = value;
+    notifyListeners();
+  }
+
+  RemoteService remoteService = RemoteService();
+
+  Future<void> fetchJobs() async {
+    List<Job>? fetchedJobs = await remoteService.getJobs();
+    _jobs = fetchedJobs!;
+
+    print('jobs loaded');
   }
 }
