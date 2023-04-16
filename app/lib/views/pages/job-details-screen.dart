@@ -61,13 +61,26 @@ class JobDetailsScreen extends StatelessWidget {
 
   String _writeLocation() {
     String location = "Location: ";
-    return location += idDistrict[job.locationId ?? 0]!;
+    String space = "\n             ->";
+    if (job.locationId == null) {
+      return location + "None";
+    }
+    for (int i = 0; i < job.locationId!.length; i++) {
+      location += job.locationId![i]['name'].toString() + space;
+    }
+    return location.substring(0, location.length - space.length);
   }
 
   String _writeTypes() {
-
-    String types = "Types: ->Intern\n             -> Senior Dev\n ";
-    return types;
+    String type = "Type: ";
+    String space = "\n          ->";
+    if (job.typeId == null) {
+      return type + "None";
+    }
+    for (int i = 0; i < job.typeId!.length; i++) {
+      type += job.typeId![i]['name'].toString() + space;
+    }
+    return type.substring(0, type.length - space.length);
   }
 
 
@@ -202,9 +215,8 @@ class JobDetailsScreen extends StatelessWidget {
             ),
           ),
           Positioned(
-            top: 0.58 * screenHeight,
-            left: 0,
-            right: 0,
+            top: 0.60  * screenHeight,
+            right: 0.02 * screenWidth,
             child: Align(
               alignment: Alignment.center,
               child: SizedBox(
@@ -225,8 +237,8 @@ class JobDetailsScreen extends StatelessWidget {
             ),
           ),
           Positioned(
-            top: 0.65 * screenHeight,
-            left: 0.1 * screenWidth,
+            top: 0.60 * screenHeight,
+            left: 0.05 * screenWidth,
             right: 0,
 
 

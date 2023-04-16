@@ -101,6 +101,10 @@ flutter:
     - assets/page-1/images/iconsignal-qGq.png
     - assets/page-1/images/vector-Kt1.png
     - assets/page-1/images/buttonsettings.png
+    - assets/icons-img/email.png
+    - assets/icons-img/facebook.png
+    - assets/icons-img/linkedin.png
+    - assets/icons-img/twitter.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

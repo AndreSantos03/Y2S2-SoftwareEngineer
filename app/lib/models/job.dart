@@ -7,10 +7,10 @@ class Job {
   int id;
   String? title;
   String? body;
-  String? ref;
+  var ref;
   int? wage;
-  int? typeId;
-  int? locationId;
+  List<dynamic>? typeId;
+  List<dynamic>? locationId;
   bool? allowRemote;
   String? publishedAt;
   String? updatedAt;
@@ -37,13 +37,13 @@ class Job {
       id: json['id'],
       title: json['title'] ,
       body: json['body'],
-      ref: json['ref'].toString(), // for some reason ref sometimes is int :/
+      ref: json['ref'], // for some reason ref sometimes is int :/
       wage: json['wage'],
-      typeId: json['type_id'],
-      locationId: json['location_id'],
-      allowRemote: json['allow_remote'],
-      publishedAt: json['published_at'],
-      updatedAt: json['updated_at'],
+      typeId: json['types'],
+      locationId: json['locations'],
+      allowRemote: json['allowRemote'],
+      publishedAt: json['publishedAt'],
+      updatedAt: json['updatedAt'],
       slug: json['slug'],
       company: Company.fromJson(json['company'] as Map<String, dynamic>),
     );
@@ -54,22 +54,53 @@ class Job {
 class Company {
   int? id;
   String? name;
-  String? logoUrl;
+  String? logo;
+  String? description;
+  String? address;
+  var phone;
+  int? fax;
+  String? email;
+  String? url;
+  String? urlTwitter;
+  String? urlFacebook;
+  String? urlLinkedin;
+  String? slug;
 
   Company({
     this.id,
     this.name,
-    this.logoUrl,
+    this.logo,
+    this.description,
+    this.address,
+    this.phone,
+    this.fax,
+    this.email,
+    this.url,
+    this.urlTwitter,
+    this.urlFacebook,
+    this.urlLinkedin,
+    this.slug,
   });
+
 
   factory Company.fromJson(Map<String, dynamic> json) {
     return Company(
       id: json['id'],
       name: json['name'],
-      logoUrl: json['logo_url'],
+      logo: json['logo'],
+      description: json['description'],
+      address: json['address'],
+      phone: json['phone'],
+      email: json['email'],
+      url: json['url'],
+      urlTwitter: json['url_twitter'],
+      urlFacebook: json['url_facebook'],
+      urlLinkedin: json['url_linkedin'],
+      slug: json['slug']
     );
   }
 }
+
 
 class JobsProvider with ChangeNotifier {
   List<Job> _jobs = [];

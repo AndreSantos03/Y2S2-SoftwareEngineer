@@ -13,6 +13,20 @@ class CompanyDetailsScreen extends StatelessWidget {
 
   CompanyDetailsScreen({required this.company, required this.job});
 
+  String writeTwitter() {
+    if (company.urlTwitter == null)
+      return " No twitter";
+    int index = company.urlTwitter!.indexOf(".com/");
+    return company.urlTwitter!.substring(index + 5, company.urlTwitter!.length);
+  }
+
+  String writeFacebook() {
+    if (company.urlFacebook == null)
+      return " No facebook";
+    int index = company.urlFacebook!.indexOf(".com/");
+    return company.urlFacebook![company.urlFacebook!.length - 1] == "/" ? company.urlFacebook!.substring(index + 5, company.urlFacebook!.length - 1) : company.urlFacebook!.substring(index + 5, company.urlFacebook!.length);
+  }
+
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery
@@ -104,7 +118,7 @@ class CompanyDetailsScreen extends StatelessWidget {
               ),
             ),
             Positioned(
-              top: 0.23 * screenHeight,
+              top: 0.25 * screenHeight,
               left: 0.1 * screenWidth,
 
                 child: SizedBox(
@@ -125,22 +139,139 @@ class CompanyDetailsScreen extends StatelessWidget {
               ),
 
             Positioned(
-              top: 0.27 * screenHeight,
+              top: 0.30 * screenHeight,
               left: 0.1 * screenWidth,
 
               child: SizedBox(
-                width: screenWidth * 0.7,
-                height: screenHeight * 0.1,
-                child: Text(
-                  company.description,
-                  textAlign: TextAlign.left,
-                  style: SafeGoogleFont(
-                    'Poppins',
-                    fontSize: screenWidth * 0.04,
-                    fontWeight: FontWeight.w500,
-                    color: const Color(0xffffffff),
+                width: screenWidth * 0.8,
+                height: screenHeight * 0.36,
+                child: SingleChildScrollView(
+                  child: Text(
+                    company.description ?? "0",
+                    textAlign: TextAlign.left,
+                    style: SafeGoogleFont(
+                      'Poppins',
+                      fontSize: screenWidth * 0.04,
+                      fontWeight: FontWeight.w500,
+                      color: const Color(0xffffffff),
+                    ),
                   ),
                 ),
+              ),
+            ),
+            Positioned(
+              top: 0.15 * screenHeight,
+              left: 0.3 * screenWidth,
+
+              child: SizedBox(
+                width: screenWidth * 0.8,
+                height: screenHeight * 0.2,
+                  child: Image.network(
+                      company.logo!
+                    ),
+                ),
+              ),
+
+            Positioned(
+              top: screenHeight * 0.67,
+              left: 0,
+              right: 0,
+              child: const Divider(
+                color: Colors.white, // Set the color of the line to white
+                thickness: 2.0, // Set the thickness of the line
+              ),
+            ),
+
+            Positioned(
+              top: 0.70 * screenHeight,
+              left: 0.1 * screenWidth,
+              child:
+                  Row(
+                        children: [
+                        Image.asset(
+                        "assets/icons-img/twitter.png",
+                        scale: 10,
+                          ),
+                        Text(
+                              writeTwitter(),
+                              style: SafeGoogleFont(
+                              'Poppins',
+                              fontSize: screenWidth * 0.05,
+                              fontWeight: FontWeight.w400,
+
+                              color: const Color(0xffffffff)
+                              )
+                        )
+                      ]
+                  ),
+            ),
+            Positioned(
+              top: 0.75 * screenHeight,
+              left: 0.1 * screenWidth,
+              child:
+              Row(
+                  children: [
+                    Image.asset(
+                      "assets/icons-img/facebook.png",
+                      scale: 40,
+                    ),
+                    Text(
+                        writeFacebook(),
+                        style: SafeGoogleFont(
+                            'Poppins',
+                            fontSize: screenWidth * 0.05,
+                            fontWeight: FontWeight.w400,
+
+                            color: const Color(0xffffffff)
+                        )
+                    )
+                  ]
+              ),
+            ),
+            Positioned(
+              top: 0.75 * screenHeight,
+              left: 0.55 * screenWidth,
+              child:
+              Row(
+                  children: [
+                    Image.asset(
+                      "assets/icons-img/email.png",
+                      scale: 33,
+                    ),
+                    Text(
+                        writeTwitter(),
+                        style: SafeGoogleFont(
+                            'Poppins',
+                            fontSize: screenWidth * 0.05,
+                            fontWeight: FontWeight.w400,
+
+                            color: const Color(0xffffffff)
+                        )
+                    )
+                  ]
+              ),
+            ),
+            Positioned(
+              top: 0.70 * screenHeight,
+              left: 0.55 * screenWidth,
+              child:
+              Row(
+                  children: [
+                    Image.asset(
+                      "assets/icons-img/linkedin.png",
+                      scale: 22,
+                    ),
+                    Text(
+                        writeTwitter(),
+                        style: SafeGoogleFont(
+                            'Poppins',
+                            fontSize: screenWidth * 0.05,
+                            fontWeight: FontWeight.w400,
+
+                            color: const Color(0xffffffff)
+                        )
+                    )
+                  ]
               ),
             ),
           ]
