@@ -41,7 +41,7 @@ class Job {
       wage: json['wage'],
       typeId: json['type_id'],
       locationId: json['location_id'],
-      allowRemote: json['allow_remote'],
+      allowRemote: json['allowRemote'],
       publishedAt: json['published_at'],
       updatedAt: json['updated_at'],
       slug: json['slug'],

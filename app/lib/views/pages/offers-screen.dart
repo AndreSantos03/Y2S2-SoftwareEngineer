@@ -28,6 +28,7 @@ class _OffersScreenState extends State<OffersScreen> {
 
     // Get filters
     final filter = Provider.of<Filter>(context, listen: false);
+    print(filter.remote);
     print(filter.salaryFilters);
 
     jobs = filter.applyFilter(jobs!);

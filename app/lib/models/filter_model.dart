@@ -21,9 +21,7 @@ class Filter extends ChangeNotifier {
     );
   }
 
-  void updateFilter(Filter newFilter, int index, bool checked) {
-    // Update the remote filter parameter
-    remote = newFilter.remote;
+  void updateFilterSalary(Filter newFilter, int index, bool checked) {
 
     if (checked) {
       // Checkbox is checked, add the selected salary to the filters
@@ -37,10 +35,18 @@ class Filter extends ChangeNotifier {
     notifyListeners();
   }
 
+  void updateFilterRemote(Filter newFilter) {
+    // Update the remote filter parameter
+    remote = newFilter.remote;
+
+    notifyListeners();
+  }
+
   // Applies the filters in a list of jobs
   List<Job> applyFilter(List<Job> jobs) {
+
     // salary filter
-    List<Job> newJobs = [];
+    List<Job> newJobsSalaryFilter = [];
 
     for (var salary in salaryFilters) {
       if (salary.id != 0) {
@@ -48,15 +54,30 @@ class Filter extends ChangeNotifier {
           if (job.wage == null) continue;
           if (job.wage! >= salary.salaryRange[0] &&
               job.wage! < salary.salaryRange[1]) {
-            newJobs.add(job);
+            newJobsSalaryFilter.add(job);
           }
         }
       }
     }
 
     // If salary id 0 is applied, it returns all jobs. This is because there are a lot of jobs without salary
-    if (salaryFilters.length == 1) newJobs = jobs;
+    if (salaryFilters.length == 1) newJobsSalaryFilter = jobs;
 
-    return newJobs;
+    // remote filter
+    List<Job> newJobsRemoteFilter = [];
+    if (remote == true) {
+      print('entered');
+      for (var job in newJobsSalaryFilter) {
+        if (job.allowRemote == true) {
+          newJobsRemoteFilter.add(job);
+        }
+      }
+    }
+    else {
+      newJobsRemoteFilter = newJobsSalaryFilter;
+    }
+
+    print(newJobsRemoteFilter.length);
+    return newJobsRemoteFilter;
   }
 }

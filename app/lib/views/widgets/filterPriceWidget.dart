@@ -133,8 +133,7 @@ class _FilterPriceWidgetState extends State<FilterPriceWidget> {
                                   Filter newFilter = filterParameters.copyWith(salaryFilters: updatedSalaryFilters);
 
                                   // Notify the listeners of the change
-                                  print(index);
-                                  Provider.of<Filter>(context, listen: false).updateFilter(newFilter, index, newValue ?? false);
+                                  Provider.of<Filter>(context, listen: false).updateFilterSalary(newFilter, index, newValue ?? false);
                                 },
                               ),
                             )
