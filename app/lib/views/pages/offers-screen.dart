@@ -58,7 +58,7 @@ class _OffersScreenState extends State<OffersScreen> {
               ),
             ),
           ),
-              // scroll jobs
+          // scroll jobs
               ScrollJobs(jobs: jobs!),
           // Text
           Positioned(
