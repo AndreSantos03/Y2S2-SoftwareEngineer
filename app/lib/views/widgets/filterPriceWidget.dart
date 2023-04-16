@@ -1,8 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:myapp/utils.dart';
+import 'package:provider/provider.dart';
+import 'package:myapp/models/filter_model.dart';
+import 'package:myapp/models/salary_model.dart';
 
-class FilterPriceWidget extends StatelessWidget {
-  const FilterPriceWidget({Key? key}) : super(key: key);
+class FilterPriceWidget extends StatefulWidget {
+  FilterPriceWidget({Key? key}) : super(key: key);
+
+  @override
+  State<FilterPriceWidget> createState() => _FilterPriceWidgetState();
+}
+
+
+class _FilterPriceWidgetState extends State<FilterPriceWidget> {
+
+  List<bool> isCheckedList = [];
+
+  @override
+  void initState() {
+    super.initState();
+    // Initialize the isCheckedList with the checked state for each checkbox
+    isCheckedList = List.generate(Salary.salaries.length, (index) =>
+        Provider
+            .of<Filter>(context, listen: false)
+            .salaryFilters
+            .contains(Salary.salaries[index])
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -15,14 +39,9 @@ class FilterPriceWidget extends StatelessWidget {
         .size
         .height;
 
-    List<String> salaries = [
-      '€5 000 - €10 000',
-      '€10 000 - €20 000',
-      '€20 000 - €40 000',
-      '€40 000 - €60 000',
-      '€60 000 - €80 000',
-      '€80 000+'
-    ];
+    List<Salary> salaries = Salary.salaries;
+
+    Filter filterParameters = Provider.of<Filter>(context);
 
     return
       Padding(
@@ -44,46 +63,92 @@ class FilterPriceWidget extends StatelessWidget {
                   ),
                 ),
               ),
-              ListView.builder(
-                  shrinkWrap: true,
-                  itemCount: salaries.length,
-                  itemBuilder: (context, index) {
-                    return Container(
-                        width: double.infinity,
-                        margin: EdgeInsets.only(top: screenHeight * 0.01),
-                        padding: EdgeInsets.symmetric(
-                          horizontal: screenWidth * 0.05,
-                          vertical: 10,
-                        ),
-                        decoration:
-                        BoxDecoration(
-                          borderRadius: BorderRadius.circular(10.0),
-                          color: const Color.fromRGBO(255, 255, 255, 0.83),
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              salaries[index],
-                              textAlign: TextAlign.center,
-                              style: SafeGoogleFont(
-                                'Poppins',
-                                fontSize: 16,
-                                fontWeight: FontWeight.w700,
-                                height: 1.5,
-                                color: const Color(0x93050505),
-                              ),
+                Padding(
+                  padding: EdgeInsets.only(top: 0.05 * screenHeight),
+                  child: Column(
+                    children: [
+                      for (int index = 0; index < salaries.length; index++)
+                        Container(
+                            width: double.infinity,
+                            margin: EdgeInsets.only(top: screenHeight * 0.01),
+                            padding: EdgeInsets.symmetric(
+                              horizontal: screenWidth * 0.05,
+                              vertical: 10,
                             ),
-                            SizedBox(
-                              height: 25,
-                              child: Checkbox(
-                                value: false,
-                                onChanged: (bool? newValue) {},
-                              ),
-                            )
-                          ],
-                        ));
-                  }),
+                            decoration:
+                            BoxDecoration(
+                              borderRadius: BorderRadius.circular(10.0),
+                              color: const Color.fromRGBO(255, 255, 255, 0.83),
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  salaries[index].name,
+                                  textAlign: TextAlign.center,
+                                  style: SafeGoogleFont(
+                                    'Poppins',
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w700,
+                                    height: 1.5,
+                                    color: const Color(0x93050505),
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 25,
+                                  child: Checkbox(
+                                    value: isCheckedList[index],
+                                    onChanged: (bool? newValue) {
+                                      setState(() {
+                                        isCheckedList[index] = newValue ?? false;
+                                      });
+
+                                      // Update the salaryFilters list based on the checkbox value
+                                      List<Salary> updatedSalaryFilters = List<
+                                          Salary>.from(
+                                          filterParameters.salaryFilters);
+
+                                      if (newValue == true) {
+                                        // Checkbox is checked, add the selected salary to the filters
+                                        updatedSalaryFilters.add(salaries[index]);
+                                        updatedSalaryFilters.remove(
+                                            Salary.noFilterSalary[0]);
+                                      } else {
+                                        // Checkbox is unchecked, remove the selected salary from the filters
+                                        List<Salary> newUpdatedSalaryFilters = [];
+
+                                        for (var salary in updatedSalaryFilters) {
+                                          if (salary.id != salaries[index].id) {
+                                            newUpdatedSalaryFilters.add(salary);
+                                          }
+                                        }
+
+                                        // If there is a filter selected, remove the salary id 0 (all)
+                                        if (newUpdatedSalaryFilters.length > 1) {
+                                          newUpdatedSalaryFilters.remove(
+                                              Salary.noFilterSalary[0]);
+                                        }
+
+                                        updatedSalaryFilters =
+                                            newUpdatedSalaryFilters;
+                                      }
+
+                                      // Update the filter parameters with the new salary filters
+                                      Filter newFilter = filterParameters.copyWith(
+                                          salaryFilters: updatedSalaryFilters);
+
+                                      // Notify the listeners of the change
+                                      Provider.of<Filter>(context, listen: false)
+                                          .updateFilterSalary(newFilter, index,
+                                          newValue ?? false);
+                                    },
+                                  ),
+                                )
+                              ],
+                            )),
+                    ],
+                  ),
+                ),
             ]
         ),
       );

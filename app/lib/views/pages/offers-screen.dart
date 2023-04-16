@@ -6,6 +6,8 @@ import 'package:myapp/views/widgets/gradientBackground.dart';
 import 'package:myapp/views/widgets/navBar.dart';
 import 'package:myapp/views/widgets/scrollJobs.dart';
 import 'package:provider/provider.dart';
+import 'package:myapp/models/filter_model.dart';
+import 'package:myapp/models/salary_model.dart';
 
 class OffersScreen extends StatefulWidget {
   const OffersScreen({Key? key}) : super(key: key);
@@ -20,8 +22,14 @@ class _OffersScreenState extends State<OffersScreen> {
   @override
   Widget build(BuildContext context) {
 
+    // Get job list
     final jobsProvider = Provider.of<JobsProvider>(context);
     jobs = jobsProvider.jobs;
+
+    // Get filters
+    final filter = Provider.of<Filter>(context, listen: false);
+
+    jobs = filter.applyFilter(jobs!);
 
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;

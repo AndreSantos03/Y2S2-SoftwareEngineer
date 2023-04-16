@@ -184,7 +184,7 @@ class CompanyDetailsScreen extends StatelessWidget {
 
             Positioned(
               top: 0.70 * screenHeight,
-              left: 0.1 * screenWidth,
+              left: 0.06 * screenWidth,
               child:
                   Row(
                         children: [
@@ -196,7 +196,7 @@ class CompanyDetailsScreen extends StatelessWidget {
                               writeTwitter(),
                               style: SafeGoogleFont(
                               'Poppins',
-                              fontSize: screenWidth * 0.05,
+                              fontSize: screenWidth * 0.045,
                               fontWeight: FontWeight.w400,
 
                               color: const Color(0xffffffff)
@@ -206,8 +206,8 @@ class CompanyDetailsScreen extends StatelessWidget {
                   ),
             ),
             Positioned(
-              top: 0.75 * screenHeight,
-              left: 0.1 * screenWidth,
+              top: 0.76 * screenHeight,
+              left: 0.06 * screenWidth,
               child:
               Row(
                   children: [
@@ -219,7 +219,7 @@ class CompanyDetailsScreen extends StatelessWidget {
                         writeFacebook(),
                         style: SafeGoogleFont(
                             'Poppins',
-                            fontSize: screenWidth * 0.05,
+                            fontSize: screenWidth * 0.045,
                             fontWeight: FontWeight.w400,
 
                             color: const Color(0xffffffff)
@@ -229,7 +229,7 @@ class CompanyDetailsScreen extends StatelessWidget {
               ),
             ),
             Positioned(
-              top: 0.75 * screenHeight,
+              top: 0.76 * screenHeight,
               left: 0.55 * screenWidth,
               child:
               Row(
@@ -242,7 +242,7 @@ class CompanyDetailsScreen extends StatelessWidget {
                         writeTwitter(),
                         style: SafeGoogleFont(
                             'Poppins',
-                            fontSize: screenWidth * 0.05,
+                            fontSize: screenWidth * 0.045,
                             fontWeight: FontWeight.w400,
 
                             color: const Color(0xffffffff)
@@ -265,12 +265,36 @@ class CompanyDetailsScreen extends StatelessWidget {
                         writeTwitter(),
                         style: SafeGoogleFont(
                             'Poppins',
-                            fontSize: screenWidth * 0.05,
+                            fontSize: screenWidth * 0.045,
                             fontWeight: FontWeight.w400,
 
                             color: const Color(0xffffffff)
                         )
                     )
+
+                  ]
+              ),
+            ),
+            Positioned(
+              top: 0.82 * screenHeight,
+              left: 0.25 * screenWidth,
+              child:
+              Row(
+                  children: [
+                    Icon(
+                      Icons.call,
+                      size: screenWidth * 0.08),
+                    Text(
+                        company.phone != null ? company.phone.toString() : "Not Available",
+                        style: SafeGoogleFont(
+                            'Poppins',
+                            fontSize: screenWidth * 0.045,
+                            fontWeight: FontWeight.w400,
+
+                            color: const Color(0xffffffff)
+                        )
+                    )
+
                   ]
               ),
             ),
