@@ -6,6 +6,8 @@ import 'package:myapp/views/pages/district-jobs.dart';
 import 'package:myapp/views/pages/map-screen.dart';
 import 'package:myapp/views/widgets/gradientBackground.dart';
 import 'package:myapp/views/widgets/smoothRectangle.dart';
+import 'package:myapp/models/filter_model.dart';
+import 'package:provider/provider.dart';
 
 class DistrictScreen extends StatefulWidget {
   int id;
@@ -63,6 +65,11 @@ class _DistrictScreenState extends State<DistrictScreen> {
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
+
+    final filter = Provider.of<Filter>(context, listen: false);
+    if (jobs != null) {
+      jobs = filter.applyFilter(jobs!);
+    }
 
     return Scaffold(
       body: Stack(
@@ -181,7 +188,7 @@ class _DistrictScreenState extends State<DistrictScreen> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => DistrictJobsScreen(id: widget.id),
+                    builder: (context) => DistrictJobsScreen(id: widget.id, jobs: jobs),
                   ),
                 );
               },
@@ -212,7 +219,7 @@ class _DistrictScreenState extends State<DistrictScreen> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => DistrictJobsScreen(id: widget.id),
+                    builder: (context) => DistrictJobsScreen(id: widget.id, jobs: jobs),
                   ),
                 );
               },

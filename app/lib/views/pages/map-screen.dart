@@ -3,6 +3,7 @@ import 'package:myapp/views/pages/offers-screen.dart';
 import 'package:myapp/views/widgets/mapImage.dart';
 import 'package:myapp/views/widgets/gradientBackground.dart';
 import 'package:myapp/views/widgets/navBar.dart';
+import 'package:myapp/views/pages/filter-screen.dart';
 
 class MapScreen extends StatefulWidget {
   const MapScreen({Key? key}) : super(key: key);
@@ -36,7 +37,7 @@ class _MapScreenState extends State<MapScreen> {
                 // Changes to the other screen
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const OffersScreen()),
+                  MaterialPageRoute(builder: (context) => const FilterScreen()),
                 );
               },
               child: SizedBox(

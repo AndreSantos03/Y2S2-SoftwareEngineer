@@ -19,8 +19,10 @@ class _FilterPriceWidgetState extends State<FilterPriceWidget> {
   @override
   void initState() {
     super.initState();
-    // Initialize the isCheckedList with false values for each checkbox
-    isCheckedList = List.generate(Salary.salaries.length, (index) => false);
+    // Initialize the isCheckedList with the checked state for each checkbox
+    isCheckedList = List.generate(Salary.salaries.length, (index) =>
+        Provider.of<Filter>(context, listen: false).salaryFilters.contains(Salary.salaries[index])
+    );
   }
 
   @override
@@ -101,6 +103,7 @@ class _FilterPriceWidgetState extends State<FilterPriceWidget> {
 
                                   // Update the salaryFilters list based on the checkbox value
                                   List<Salary> updatedSalaryFilters = List<Salary>.from(filterParameters.salaryFilters);
+
                                   if (newValue == true) {
                                     // Checkbox is checked, add the selected salary to the filters
                                     updatedSalaryFilters.add(salaries[index]);
@@ -108,7 +111,21 @@ class _FilterPriceWidgetState extends State<FilterPriceWidget> {
                                     print(updatedSalaryFilters); // Print the updated filters
                                   } else {
                                     // Checkbox is unchecked, remove the selected salary from the filters
-                                    updatedSalaryFilters.remove(salaries[index]);
+                                    List<Salary> newUpdatedSalaryFilters = [];
+
+                                    for (var salary in updatedSalaryFilters) {
+                                      if (salary.id != salaries[index].id) {
+                                        newUpdatedSalaryFilters.add(salary);
+                                      }
+                                    }
+
+                                    // If there is a filter selected, remove the salary id 0 (all)
+                                    if (newUpdatedSalaryFilters.length > 1) {
+                                      newUpdatedSalaryFilters.remove(Salary.noFilterSalary[0]);
+                                    }
+
+                                    updatedSalaryFilters = newUpdatedSalaryFilters;
+
                                     print(updatedSalaryFilters);
                                   }
 

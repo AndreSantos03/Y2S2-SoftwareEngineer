@@ -1,7 +1,6 @@
-import 'package:dart_numerics/dart_numerics.dart';
-import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:myapp/models/salary_model.dart';
+import 'package:myapp/models/job.dart';
 
 class Filter extends ChangeNotifier {
   late List<Salary> salaryFilters;
@@ -36,5 +35,28 @@ class Filter extends ChangeNotifier {
 
     // Notify the listeners of the change
     notifyListeners();
+  }
+
+  // Applies the filters in a list of jobs
+  List<Job> applyFilter(List<Job> jobs) {
+    // salary filter
+    List<Job> newJobs = [];
+
+    for (var salary in salaryFilters) {
+      if (salary.id != 0) {
+        for (var job in jobs) {
+          if (job.wage == null) continue;
+          if (job.wage! >= salary.salaryRange[0] &&
+              job.wage! < salary.salaryRange[1]) {
+            newJobs.add(job);
+          }
+        }
+      }
+    }
+
+    // If salary id 0 is applied, it returns all jobs. This is because there are a lot of jobs without salary
+    if (salaryFilters.length == 1) newJobs = jobs;
+
+    return newJobs;
   }
 }

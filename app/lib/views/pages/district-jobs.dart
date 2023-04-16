@@ -8,8 +8,9 @@ import 'package:myapp/views/widgets/scrollJobs.dart';
 
 class DistrictJobsScreen extends StatefulWidget {
   int id;
+  List<Job>? jobs;
 
-  DistrictJobsScreen({Key? key, required this.id}) : super(key: key);
+  DistrictJobsScreen({Key? key, required this.id, required this.jobs}) : super(key: key);
 
   @override
   State<DistrictJobsScreen> createState() => _DistrictJobsScreenState();
@@ -37,32 +38,10 @@ class _DistrictJobsScreenState extends State<DistrictJobsScreen> {
     22: 'Viana do Castelo',
   };
 
-  List<Job>? jobs;
-  var isLoaded = false;
-
-  getData() async {
-    jobs = await RemoteService().getJobs(q: idDistrict[widget.id]!); // Query: district name
-    if (jobs != null) {
-      setState(() {
-        isLoaded = true;
-      });
-    }
-  }
-
-  @override
-  void initState() {
-    super.initState();
-
-    // fetch data from API
-    getData();
-  }
-
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
-
-    print(jobs?.length);
 
     return Scaffold(
       body: Stack(
@@ -116,10 +95,8 @@ class _DistrictJobsScreenState extends State<DistrictJobsScreen> {
               ),
             ),
           ),
-          isLoaded
-              // scroll jobs
-              ? ScrollJobs(jobs: jobs!)
-              : const Center(child: CircularProgressIndicator()),
+          // scroll jobs
+          ScrollJobs(jobs: widget.jobs!)
         ],
       ),
       backgroundColor: Colors.black,
