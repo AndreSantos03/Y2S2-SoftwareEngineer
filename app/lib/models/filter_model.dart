@@ -11,7 +11,7 @@ class Filter extends ChangeNotifier {
   Filter({List<Salary>? salaryFilters, bool? remote, List<Technology>? technologyFilters}) {
     this.salaryFilters = salaryFilters ?? Salary.noFilterSalary;
     this.remote = remote ?? false;
-    this.technologyFilters = technologyFilters ?? [];
+    this.technologyFilters = technologyFilters ?? [const Technology(id: 0, string: ' ')];
   }
 
   Filter copyWith({
@@ -54,7 +54,14 @@ class Filter extends ChangeNotifier {
       technologyFilters.add(Technology.technologies[index]);
     } else {
       // Checkbox is unchecked, remove the selected technology from the filters
-      salaryFilters.remove(Technology.technologies[index]);
+      technologyFilters.remove(Technology.technologies[index]);
+    }
+
+    if (technologyFilters.isEmpty) {
+      technologyFilters.add(const Technology(id: 0, string: ' '));
+    }
+    else {
+      technologyFilters.remove(const Technology(id: 0, string: ' '));
     }
 
     // Notify the listeners of the change
