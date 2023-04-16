@@ -1,23 +1,28 @@
 import 'package:flutter/cupertino.dart';
 import 'package:myapp/models/salary_model.dart';
 import 'package:myapp/models/job.dart';
+import 'package:myapp/models/technology_model.dart';
 
 class Filter extends ChangeNotifier {
   late List<Salary> salaryFilters;
   late bool remote;
+  late List<Technology> technologyFilters;
 
-  Filter({List<Salary>? salaryFilters, bool? remote}) {
+  Filter({List<Salary>? salaryFilters, bool? remote, List<Technology>? technologyFilters}) {
     this.salaryFilters = salaryFilters ?? Salary.noFilterSalary;
     this.remote = remote ?? false;
+    this.technologyFilters = technologyFilters ?? [];
   }
 
   Filter copyWith({
     List<Salary>? salaryFilters,
     bool? remote,
+    List<Technology>? technologyFilters,
   }) {
     return Filter(
       salaryFilters: salaryFilters ?? this.salaryFilters,
       remote: remote ?? this.remote,
+      technologyFilters: technologyFilters ?? this.technologyFilters,
     );
   }
 
@@ -39,6 +44,20 @@ class Filter extends ChangeNotifier {
     // Update the remote filter parameter
     remote = newFilter.remote;
 
+    notifyListeners();
+  }
+
+  void updateFilterTechnology(Filter newFilter, int index, bool checked) {
+
+    if (checked) {
+      // Checkbox is checked, add the selected technology to the filters
+      technologyFilters.add(Technology.technologies[index]);
+    } else {
+      // Checkbox is unchecked, remove the selected technology from the filters
+      salaryFilters.remove(Technology.technologies[index]);
+    }
+
+    // Notify the listeners of the change
     notifyListeners();
   }
 
@@ -66,7 +85,6 @@ class Filter extends ChangeNotifier {
     // remote filter
     List<Job> newJobsRemoteFilter = [];
     if (remote == true) {
-      print('entered');
       for (var job in newJobsSalaryFilter) {
         if (job.allowRemote == true) {
           newJobsRemoteFilter.add(job);
@@ -76,8 +94,23 @@ class Filter extends ChangeNotifier {
     else {
       newJobsRemoteFilter = newJobsSalaryFilter;
     }
+    
+    // technologies filter
+    List<Job> newJobsTechnologyFilter = [];
+    for (var job in newJobsRemoteFilter) {
+      for (var technology in technologyFilters) {
+        if (job.body != null &&
+            job.body!.toLowerCase().contains(technology.string.toLowerCase())) {
+            newJobsTechnologyFilter.add(job);
+        }
+      }
+    }
 
-    print(newJobsRemoteFilter.length);
-    return newJobsRemoteFilter;
+    // If no filter is applied
+    if (technologyFilters == []) {
+      newJobsTechnologyFilter = newJobsRemoteFilter;
+    }
+
+    return newJobsTechnologyFilter;
   }
 }

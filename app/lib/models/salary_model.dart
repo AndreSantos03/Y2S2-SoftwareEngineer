@@ -6,7 +6,7 @@ class Salary extends Equatable {
   final String name;
   final List<int> salaryRange; // size = 2 , ex: [5000, 10000] -> 5000 <= salaries < 10000
 
-  Salary({
+  const Salary({
     required this.id,
     required this.name,
     required this.salaryRange,

@@ -29,7 +29,7 @@ class _FilterRemoteWidgetState extends State<FilterRemoteWidget> {
     Filter filterParameters = Provider.of<Filter>(context);
 
     return Padding(
-      padding: EdgeInsets.only(top: screenHeight * 0.63),
+      padding: EdgeInsets.only(top: screenHeight * 0.05),
       child: Stack(
         children: [
           Positioned(
