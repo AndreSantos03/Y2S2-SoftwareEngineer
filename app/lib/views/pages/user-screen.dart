@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:myapp/views/widgets/navBar.dart';
 import 'package:myapp/views/widgets/gradientBackground.dart';
-import 'map-screen.dart';
-import 'offers-screen.dart';
 import 'package:myapp/utils.dart';
+import 'package:myapp/views/widgets/inputTextBoxWidget.dart';
 
 class UserScreen extends StatelessWidget {
-  const UserScreen({super.key});
+  final TextEditingController usernameController = TextEditingController();
+  UserScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -21,11 +21,11 @@ class UserScreen extends StatelessWidget {
             children: [
               GradientBackground(screenHeight: screenHeight),
               Positioned(
-                top: screenHeight * 0.27,
+                top: screenHeight * 0.1,
                 left: 0,
                 right: 0,
                 child: Text(
-                  'Atualiza as tuas competências \n para usá-las como filtro.',
+                  'As tuas informações pessoais:',
                   textAlign: TextAlign.center,
                   style: SafeGoogleFont(
                     'Poppins',
@@ -36,6 +36,12 @@ class UserScreen extends StatelessWidget {
                   ),
                 ),
               ),
+            Positioned(
+              top: screenHeight * 0.2,
+                left: 0,
+                right: 0,
+                child: InputTextBox(controller: usernameController, topText: 'Nome de utilizador:', hintText: '(username : firebase)',)
+            ),
             ],
           ),
       backgroundColor: Colors.black,
