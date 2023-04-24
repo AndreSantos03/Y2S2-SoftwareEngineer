@@ -56,11 +56,46 @@ class UserScreen extends StatelessWidget {
                 hintText: '(email : firebase)',
               )),
           Positioned(
-              top: screenHeight * 0.67,
-              left: 0,
-              right: 0,
-              child:
-                  RectangularButton(text: 'Alterar password', onPressed: () {}, horizontalMargin: screenWidth * 0.2, backGroundColor: Color.fromRGBO(102, 152, 173, 1),))
+            top: screenHeight * 0.5,
+            left: screenWidth * 0.05,
+            child: Text(
+              'Password:',
+              textAlign: TextAlign.center,
+              style: SafeGoogleFont(
+                'Poppins',
+                fontSize: 22,
+                fontWeight: FontWeight.w700,
+                height: 1.3,
+                color: const Color(0xffffffff),
+              ),
+            ),
+          ),
+          Positioned(
+              top: screenHeight * 0.542,
+              left: screenWidth * 0.048,
+              right: screenWidth * 0.35,
+              child: RectangularButton(
+                text: 'Alterar password',
+                onPressed: () {},
+                horizontalMargin: 0,
+                backGroundColor: const Color.fromRGBO(102, 152, 173, 1),
+              )),
+          Positioned(
+            top: screenHeight * 0.67,
+            left: 0,
+            right: 0,
+            child: Text(
+              'Atualiza as tuas competência \n para usálas como filtro!',
+              textAlign: TextAlign.center,
+              style: SafeGoogleFont(
+                'Poppins',
+                fontSize: 22,
+                fontWeight: FontWeight.w700,
+                height: 1.3,
+                color: const Color(0xffffffff),
+              ),
+            ),
+          ),
         ],
       ),
       backgroundColor: Colors.black,
