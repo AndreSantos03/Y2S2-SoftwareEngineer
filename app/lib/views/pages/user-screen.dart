@@ -23,7 +23,7 @@ class UserScreen extends StatelessWidget {
         physics: const AlwaysScrollableScrollPhysics(),
         child: Stack(
           children: [
-            GradientBackground(screenHeight: screenHeight + 300),
+            GradientBackground(screenHeight: screenHeight + screenHeight * 0.35),
             Positioned(
               top: screenHeight * 0.1,
               left: 0,
@@ -50,7 +50,7 @@ class UserScreen extends StatelessWidget {
                   hintText: '(username : firebase)',
                 )),
             Positioned(
-                top: screenHeight * 0.34,
+                top: screenHeight * 0.38,
                 left: 0,
                 right: 0,
                 child: InputTextBox(
@@ -59,7 +59,7 @@ class UserScreen extends StatelessWidget {
                   hintText: '(email : firebase)',
                 )),
             Positioned(
-              top: screenHeight * 0.5,
+              top: screenHeight * 0.58,
               left: screenWidth * 0.05,
               child: Text(
                 'Password:',
@@ -74,7 +74,7 @@ class UserScreen extends StatelessWidget {
               ),
             ),
             Positioned(
-                top: screenHeight * 0.542,
+                top: screenHeight * 0.63,
                 left: screenWidth * 0.048,
                 right: screenWidth * 0.35,
                 child: RectangularButton(
@@ -84,7 +84,7 @@ class UserScreen extends StatelessWidget {
                   backGroundColor: const Color.fromRGBO(102, 152, 173, 1),
                 )),
             Positioned(
-              top: screenHeight * 0.67,
+              top: screenHeight * 0.76,
                 left: 0,
                 right: 0,
                 child: const LanguageSelectionDropdown()
