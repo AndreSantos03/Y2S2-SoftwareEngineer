@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:myapp/utils.dart';
+import 'package:provider/provider.dart';
+import 'package:myapp/models/language_selection_model.dart';
 
 class LanguageSelectionDropdown extends StatefulWidget {
   const LanguageSelectionDropdown({super.key});
@@ -17,6 +19,11 @@ class _LanguageSelectionDropdownState extends State<LanguageSelectionDropdown> {
   Color squaresColor = const Color.fromRGBO(102, 152, 173, 1);
 
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Theme(
       data: ThemeData(
@@ -24,9 +31,7 @@ class _LanguageSelectionDropdownState extends State<LanguageSelectionDropdown> {
       ),
       child: GestureDetector(
         onTap: () {
-          setState(() {
-            _isOpen = !_isOpen;
-          });
+          Provider.of<LanguageSelectionModel>(context, listen: false).toggleIsOpen();
         },
         child: Container(
           padding: const EdgeInsets.all(16.0),
@@ -48,13 +53,16 @@ class _LanguageSelectionDropdownState extends State<LanguageSelectionDropdown> {
                 ),
               ),
               const SizedBox(height: 8.0),
-                Container(
-                  margin: const EdgeInsets.only(top: 16.0),
-                  child: ExpansionTile(
-                    title: Text(
-                      _selectedLanguages.isNotEmpty
-                          ? _selectedLanguages.join(', ')
-                          : 'Linguagens de programação',
+              Container(
+                margin: const EdgeInsets.only(top: 16.0),
+                child: ExpansionTile(
+                  title: Selector<LanguageSelectionModel, String>(
+                    selector: (_, provider) =>
+                    provider.selectedLanguages.isNotEmpty
+                        ? provider.selectedLanguages.join(', ')
+                        : 'Linguagens de programação',
+                    builder: (_, value, __) => Text(
+                      value,
                       style: const TextStyle(
                         color: Color(0xffffffff),
                         fontFamily: 'Poppins',
@@ -62,30 +70,10 @@ class _LanguageSelectionDropdownState extends State<LanguageSelectionDropdown> {
                         height: 1.3,
                       ),
                     ),
-                    children: [
-                      CheckboxListTile(
-                        activeColor: squaresColor,
-                        title: const Text(
-                          'JavaScript',
-                          style: TextStyle(
-                            color: Color(0xffffffff),
-                            fontFamily: 'Poppins',
-                            fontSize: 20,
-                            height: 1.3,
-                          ),
-                        ),
-                        value: _selectedLanguages.contains('JavaScript'),
-                        onChanged: (value) {
-                          setState(() {
-                            if (value!) {
-                              _selectedLanguages.add('JavaScript');
-                            } else {
-                              _selectedLanguages.remove('JavaScript');
-                            }
-                          });
-                        },
-                      ),
-                      CheckboxListTile(
+                  ),
+                  children: [
+                    Consumer<LanguageSelectionModel>(
+                      builder: (_, provider, __) => CheckboxListTile(
                         activeColor: squaresColor,
                         title: const Text(
                           'Python',
@@ -96,18 +84,14 @@ class _LanguageSelectionDropdownState extends State<LanguageSelectionDropdown> {
                             height: 1.3,
                           ),
                         ),
-                        value: _selectedLanguages.contains('Python'),
+                        value: provider.selectedLanguages.contains('Python'),
                         onChanged: (value) {
-                          setState(() {
-                            if (value!) {
-                              _selectedLanguages.add('Python');
-                            } else {
-                              _selectedLanguages.remove('Python');
-                            }
-                          });
+                          provider.toggleLanguage('Python');
                         },
                       ),
-                      CheckboxListTile(
+                    ),
+                    Consumer<LanguageSelectionModel>(
+                      builder: (_, provider, __) => CheckboxListTile(
                         activeColor: squaresColor,
                         title: const Text(
                           'Java',
@@ -118,20 +102,51 @@ class _LanguageSelectionDropdownState extends State<LanguageSelectionDropdown> {
                             height: 1.3,
                           ),
                         ),
-                        value: _selectedLanguages.contains('Java'),
+                        value: provider.selectedLanguages.contains('Java'),
                         onChanged: (value) {
-                          setState(() {
-                            if (value!) {
-                              _selectedLanguages.add('Java');
-                            } else {
-                              _selectedLanguages.remove('Java');
-                            }
-                          });
+                          provider.toggleLanguage('Java');
                         },
                       ),
-                    ],
-                  ),
+                    ),
+                    Consumer<LanguageSelectionModel>(
+                      builder: (_, provider, __) => CheckboxListTile(
+                        activeColor: squaresColor,
+                        title: const Text(
+                          'JavaScript',
+                          style: TextStyle(
+                            color: Color(0xffffffff),
+                            fontFamily: 'Poppins',
+                            fontSize: 20,
+                            height: 1.3,
+                          ),
+                        ),
+                        value: provider.selectedLanguages.contains('JavaScript'),
+                        onChanged: (value) {
+                          provider.toggleLanguage('JavaScript');
+                        },
+                      ),
+                    ),
+                    Consumer<LanguageSelectionModel>(
+                      builder: (_, provider, __) => CheckboxListTile(
+                        activeColor: squaresColor,
+                        title: const Text(
+                          'SQL',
+                          style: TextStyle(
+                            color: Color(0xffffffff),
+                            fontFamily: 'Poppins',
+                            fontSize: 20,
+                            height: 1.3,
+                          ),
+                        ),
+                        value: provider.selectedLanguages.contains('SQL'),
+                        onChanged: (value) {
+                          provider.toggleLanguage('SQL');
+                        },
+                      ),
+                    ),
+                  ],
                 ),
+              ),
               const SizedBox(height: 8.0),
                 Container(
                   margin: const EdgeInsets.only(top: 16.0),

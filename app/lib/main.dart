@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:myapp/utils.dart';
-import 'package:myapp/views/pages/filter-screen.dart';
 import 'package:myapp/views/pages/map-screen.dart';
-import 'package:myapp/views/pages/discrict-screen.dart';
-import 'package:myapp/views/pages/test-screen.dart';
 import 'package:myapp/models/job.dart';
 import 'package:provider/provider.dart';
 import 'package:myapp/models/filter_model.dart';
-import 'package:myapp/models/salary_model.dart';
+import 'package:myapp/models/language_selection_model.dart';
 
 void main() {
   // Fetch jobs and create JobsProvider instance
@@ -23,6 +20,7 @@ void main() {
         ChangeNotifierProvider<Filter>(
           create: (context) => Filter(),
         ),
+        ChangeNotifierProvider(create: (_) => LanguageSelectionModel()),
       ],
       child: const MyApp(),
     ),
