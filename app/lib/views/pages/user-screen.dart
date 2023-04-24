@@ -4,6 +4,7 @@ import 'package:myapp/views/widgets/gradientBackground.dart';
 import 'package:myapp/views/widgets/inputTextBoxWidget.dart';
 import 'package:myapp/views/widgets/navBar.dart';
 import 'package:myapp/views/widgets/rectangularButtonWidget.dart';
+import 'package:myapp/views/widgets/selectionDropdownWidget.dart';
 
 class UserScreen extends StatelessWidget {
   final TextEditingController usernameController = TextEditingController();
@@ -18,85 +19,78 @@ class UserScreen extends StatelessWidget {
 
     return Scaffold(
       bottomNavigationBar: const NavBar(pageNumber: 2),
-      body: Stack(
-        children: [
-          GradientBackground(screenHeight: screenHeight),
-          Positioned(
-            top: screenHeight * 0.1,
-            left: 0,
-            right: 0,
-            child: Text(
-              'As tuas informações pessoais:',
-              textAlign: TextAlign.center,
-              style: SafeGoogleFont(
-                'Poppins',
-                fontSize: 22,
-                fontWeight: FontWeight.w700,
-                height: 1.3,
-                color: const Color(0xffffffff),
-              ),
-            ),
-          ),
-          Positioned(
-              top: screenHeight * 0.18,
+      body: SingleChildScrollView(
+        physics: const AlwaysScrollableScrollPhysics(),
+        child: Stack(
+          children: [
+            GradientBackground(screenHeight: screenHeight + 300),
+            Positioned(
+              top: screenHeight * 0.1,
               left: 0,
               right: 0,
-              child: InputTextBox(
-                controller: usernameController,
-                topText: 'Nome de utilizador:',
-                hintText: '(username : firebase)',
-              )),
-          Positioned(
-              top: screenHeight * 0.34,
-              left: 0,
-              right: 0,
-              child: InputTextBox(
-                controller: emailController,
-                topText: 'Email:',
-                hintText: '(email : firebase)',
-              )),
-          Positioned(
-            top: screenHeight * 0.5,
-            left: screenWidth * 0.05,
-            child: Text(
-              'Password:',
-              textAlign: TextAlign.center,
-              style: SafeGoogleFont(
-                'Poppins',
-                fontSize: 22,
-                fontWeight: FontWeight.w700,
-                height: 1.3,
-                color: const Color(0xffffffff),
+              child: Text(
+                'As tuas informações pessoais:',
+                textAlign: TextAlign.center,
+                style: SafeGoogleFont(
+                  'Poppins',
+                  fontSize: 22,
+                  fontWeight: FontWeight.w700,
+                  height: 1.3,
+                  color: const Color(0xffffffff),
+                ),
               ),
             ),
-          ),
-          Positioned(
-              top: screenHeight * 0.542,
-              left: screenWidth * 0.048,
-              right: screenWidth * 0.35,
-              child: RectangularButton(
-                text: 'Alterar password',
-                onPressed: () {},
-                horizontalMargin: 0,
-                backGroundColor: const Color.fromRGBO(102, 152, 173, 1),
-              )),
-          Positioned(
-            top: screenHeight * 0.67,
-            left: 0,
-            right: 0,
-            child: Text(
-              'Atualiza as tuas competência \n para usálas como filtro!',
-              textAlign: TextAlign.center,
-              style: SafeGoogleFont(
-                'Poppins',
-                fontSize: 22,
-                fontWeight: FontWeight.w700,
-                height: 1.3,
-                color: const Color(0xffffffff),
+            Positioned(
+                top: screenHeight * 0.18,
+                left: 0,
+                right: 0,
+                child: InputTextBox(
+                  controller: usernameController,
+                  topText: 'Nome de utilizador:',
+                  hintText: '(username : firebase)',
+                )),
+            Positioned(
+                top: screenHeight * 0.34,
+                left: 0,
+                right: 0,
+                child: InputTextBox(
+                  controller: emailController,
+                  topText: 'Email:',
+                  hintText: '(email : firebase)',
+                )),
+            Positioned(
+              top: screenHeight * 0.5,
+              left: screenWidth * 0.05,
+              child: Text(
+                'Password:',
+                textAlign: TextAlign.center,
+                style: SafeGoogleFont(
+                  'Poppins',
+                  fontSize: 22,
+                  fontWeight: FontWeight.w700,
+                  height: 1.3,
+                  color: const Color(0xffffffff),
+                ),
               ),
             ),
-          ),
-        ],
+            Positioned(
+                top: screenHeight * 0.542,
+                left: screenWidth * 0.048,
+                right: screenWidth * 0.35,
+                child: RectangularButton(
+                  text: 'Alterar password',
+                  onPressed: () {},
+                  horizontalMargin: 0,
+                  backGroundColor: const Color.fromRGBO(102, 152, 173, 1),
+                )),
+            Positioned(
+              top: screenHeight * 0.67,
+                left: 0,
+                right: 0,
+                child: const LanguageSelectionDropdown()
+            ),
+          ],
+        ),
       ),
       backgroundColor: Colors.black,
     );
