@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:myapp/utils.dart';
 import 'package:provider/provider.dart';
 import 'package:myapp/models/language_selection_model.dart';
+import 'package:myapp/views/widgets/languageConsumer.dart';
 
 class LanguageSelectionDropdown extends StatefulWidget {
   const LanguageSelectionDropdown({super.key});
@@ -71,79 +72,11 @@ class _LanguageSelectionDropdownState extends State<LanguageSelectionDropdown> {
                       ),
                     ),
                   ),
-                  children: [
-                    Consumer<LanguageSelectionModel>(
-                      builder: (_, provider, __) => CheckboxListTile(
-                        activeColor: squaresColor,
-                        title: const Text(
-                          'Python',
-                          style: TextStyle(
-                            color: Color(0xffffffff),
-                            fontFamily: 'Poppins',
-                            fontSize: 20,
-                            height: 1.3,
-                          ),
-                        ),
-                        value: provider.selectedLanguages.contains('Python'),
-                        onChanged: (value) {
-                          provider.toggleLanguage('Python');
-                        },
-                      ),
-                    ),
-                    Consumer<LanguageSelectionModel>(
-                      builder: (_, provider, __) => CheckboxListTile(
-                        activeColor: squaresColor,
-                        title: const Text(
-                          'Java',
-                          style: TextStyle(
-                            color: Color(0xffffffff),
-                            fontFamily: 'Poppins',
-                            fontSize: 20,
-                            height: 1.3,
-                          ),
-                        ),
-                        value: provider.selectedLanguages.contains('Java'),
-                        onChanged: (value) {
-                          provider.toggleLanguage('Java');
-                        },
-                      ),
-                    ),
-                    Consumer<LanguageSelectionModel>(
-                      builder: (_, provider, __) => CheckboxListTile(
-                        activeColor: squaresColor,
-                        title: const Text(
-                          'JavaScript',
-                          style: TextStyle(
-                            color: Color(0xffffffff),
-                            fontFamily: 'Poppins',
-                            fontSize: 20,
-                            height: 1.3,
-                          ),
-                        ),
-                        value: provider.selectedLanguages.contains('JavaScript'),
-                        onChanged: (value) {
-                          provider.toggleLanguage('JavaScript');
-                        },
-                      ),
-                    ),
-                    Consumer<LanguageSelectionModel>(
-                      builder: (_, provider, __) => CheckboxListTile(
-                        activeColor: squaresColor,
-                        title: const Text(
-                          'SQL',
-                          style: TextStyle(
-                            color: Color(0xffffffff),
-                            fontFamily: 'Poppins',
-                            fontSize: 20,
-                            height: 1.3,
-                          ),
-                        ),
-                        value: provider.selectedLanguages.contains('SQL'),
-                        onChanged: (value) {
-                          provider.toggleLanguage('SQL');
-                        },
-                      ),
-                    ),
+                  children: const [
+                    LanguageConsumer(language: 'Python'),
+                    LanguageConsumer(language: 'Java'),
+                    LanguageConsumer(language: 'JavaScript'),
+                    LanguageConsumer(language: 'Sql'),
                   ],
                 ),
               ),
