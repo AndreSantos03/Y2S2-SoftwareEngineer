@@ -45,7 +45,7 @@ class _FilterPriceWidgetState extends State<FilterPriceWidget> {
 
     return
       Padding(
-        padding: EdgeInsets.only(top: screenHeight * 0.16),
+        padding: EdgeInsets.only(top: screenHeight * 0.02),
         child: Stack(
             children: [
               Positioned(
@@ -102,44 +102,10 @@ class _FilterPriceWidgetState extends State<FilterPriceWidget> {
                                       setState(() {
                                         isCheckedList[index] = newValue ?? false;
                                       });
-
-                                      // Update the salaryFilters list based on the checkbox value
-                                      List<Salary> updatedSalaryFilters = List<
-                                          Salary>.from(
-                                          filterParameters.salaryFilters);
-
-                                      if (newValue == true) {
-                                        // Checkbox is checked, add the selected salary to the filters
-                                        updatedSalaryFilters.add(salaries[index]);
-                                        updatedSalaryFilters.remove(
-                                            Salary.noFilterSalary[0]);
-                                      } else {
-                                        // Checkbox is unchecked, remove the selected salary from the filters
-                                        List<Salary> newUpdatedSalaryFilters = [];
-
-                                        for (var salary in updatedSalaryFilters) {
-                                          if (salary.id != salaries[index].id) {
-                                            newUpdatedSalaryFilters.add(salary);
-                                          }
-                                        }
-
-                                        // If there is a filter selected, remove the salary id 0 (all)
-                                        if (newUpdatedSalaryFilters.length > 1) {
-                                          newUpdatedSalaryFilters.remove(
-                                              Salary.noFilterSalary[0]);
-                                        }
-
-                                        updatedSalaryFilters =
-                                            newUpdatedSalaryFilters;
-                                      }
-
-                                      // Update the filter parameters with the new salary filters
-                                      Filter newFilter = filterParameters.copyWith(
-                                          salaryFilters: updatedSalaryFilters);
-
+                                      
                                       // Notify the listeners of the change
                                       Provider.of<Filter>(context, listen: false)
-                                          .updateFilterSalary(newFilter, index,
+                                          .updateFilterSalary(index,
                                           newValue ?? false);
                                     },
                                   ),
