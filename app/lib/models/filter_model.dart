@@ -37,7 +37,7 @@ class Filter extends ChangeNotifier {
     );
   }
 
-  void updateFilterSalary(Filter newFilter, int index, bool checked) {
+  void updateFilterSalary(int index, bool checked) {
 
     if (checked) {
       // Checkbox is checked, add the selected salary to the filters
@@ -51,14 +51,16 @@ class Filter extends ChangeNotifier {
     notifyListeners();
   }
 
-  void updateFilterRemote(Filter newFilter) {
+  void updateFilterRemote(bool checked) {
     // Update the remote filter parameter
-    remote = newFilter.remote;
+    remote = checked;
+
+    print(remote);
 
     notifyListeners();
   }
 
-  void updateFilterTechnology(Filter newFilter, int index, bool checked) {
+  void updateFilterTechnology(int index, bool checked) {
 
     if (checked) {
       // Checkbox is checked, add the selected technology to the filters
@@ -74,6 +76,8 @@ class Filter extends ChangeNotifier {
     else {
       technologyFilters.remove(const Technology(id: 0, string: ' '));
     }
+
+    print(technologyFilters);
 
     // Notify the listeners of the change
     notifyListeners();

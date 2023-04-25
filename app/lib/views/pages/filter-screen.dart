@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:myapp/models/filter_model.dart';
+import 'package:myapp/models/languages_remote_selection_model.dart';
 import 'package:myapp/utils.dart';
+import 'package:myapp/views/pages/map-screen.dart';
 import 'package:myapp/views/widgets/filterPriceWidget.dart';
 import 'package:myapp/views/widgets/filterRemoteWidget.dart';
 import 'package:myapp/views/widgets/filterTechnologiesWidget.dart';
-import 'package:myapp/views/widgets/filterTopWidget.dart';
 import 'package:myapp/views/widgets/gradientBackground.dart';
 import 'package:myapp/views/widgets/rectangularButtonWidget.dart';
+import 'package:provider/provider.dart';
 
 class FilterScreen extends StatefulWidget {
   const FilterScreen({Key? key}) : super(key: key);
@@ -21,9 +24,20 @@ class _FilterScreenState extends State<FilterScreen> {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
 
+    LanguageSelectionModel lsm = Provider.of<LanguageSelectionModel>(context);
+
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const MapScreen()),
+            );
+          },
+        ),
         title: Text(
           'Filtros',
           textAlign: TextAlign.center,
@@ -44,7 +58,17 @@ class _FilterScreenState extends State<FilterScreen> {
           child: Column(
             children: [
               SizedBox(height: screenHeight * 0.03),
-              RectangularButton(text: '      Usar o meu perfil como filtro      ', onPressed: () {}, horizontalMargin: 0, backGroundColor: const Color.fromRGBO(102, 152, 173, 1)),
+              RectangularButton(
+                  text: '      Usar o meu perfil como filtro      ',
+                  onPressed: () {
+                    lsm.useAsFilter(context);
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => FilterScreen()),
+                    ); // reloads the page so checked boxes appear accordingly to user profile
+                  },
+                  horizontalMargin: 0,
+                  backGroundColor: const Color.fromRGBO(102, 152, 173, 1)),
               FilterPriceWidget(),
               const FilterRemoteWidget(),
               const FilterTechnologiesWidget(),

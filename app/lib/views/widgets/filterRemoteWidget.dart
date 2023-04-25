@@ -17,6 +17,7 @@ class _FilterRemoteWidgetState extends State<FilterRemoteWidget> {
   void initState() {
     super.initState();
     // Initialize the isChecked variable with the checked state for the checkbox
+    print('a');
     isChecked = Provider.of<Filter>(context, listen: false).remote;
   }
 
@@ -85,12 +86,9 @@ class _FilterRemoteWidgetState extends State<FilterRemoteWidget> {
                             isChecked = newValue ?? false; // Update the first checkbox value
                           });
 
-                          // Update the filter parameters with the new remote filter
-                          Filter newFilter = filterParameters.copyWith(remote: newValue ?? false);
-
                           // Notify the listeners of the change
                           Provider.of<Filter>(context, listen: false)
-                              .updateFilterRemote(newFilter); // Update the categoryId as needed
+                              .updateFilterRemote(isChecked); // Update the categoryId as needed
                         },
                       ),
                     )

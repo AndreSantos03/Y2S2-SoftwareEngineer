@@ -102,30 +102,8 @@ class _FilterTechnologiesWidgetState extends State<FilterTechnologiesWidget> {
                                       isCheckedList[index] = newValue ?? false;
                                     });
 
-                                    // Update the technologyFilters list based on the checkbox value
-                                    List<Technology> updatedTechnologyFilters = List<Technology>.from(filterParameters.technologyFilters);
-
-                                    if (newValue == true) {
-                                      // Checkbox is checked, add the selected technology to the filters
-                                      updatedTechnologyFilters.add(technologies[index]);
-                                    } else {
-                                      // Checkbox is unchecked, remove the selected technology from the filters
-                                      List<Technology> newUpdatedTechnologyFilters = [];
-
-                                      for (var technology in updatedTechnologyFilters) {
-                                        if (technology.id != technologies[index].id) {
-                                          newUpdatedTechnologyFilters.add(technology);
-                                        }
-                                      }
-
-                                      updatedTechnologyFilters = newUpdatedTechnologyFilters;
-                                    }
-
-                                    // Update the filter parameters with the new technology filters
-                                    Filter newFilter = filterParameters.copyWith(technologyFilters: updatedTechnologyFilters);
-
                                     // Notify the listeners of the change
-                                    Provider.of<Filter>(context, listen: false).updateFilterTechnology(newFilter, index, newValue ?? false);
+                                    Provider.of<Filter>(context, listen: false).updateFilterTechnology(index, newValue ?? false);
                                   },
                                 ),
                               )
