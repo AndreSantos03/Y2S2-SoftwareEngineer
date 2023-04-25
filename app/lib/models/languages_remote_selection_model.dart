@@ -22,12 +22,14 @@ class LanguageSelectionModel extends ChangeNotifier {
     } else {
       _selectedLanguages.add(language);
     }
-    print("Selected languages: $_selectedLanguages");
+    // print("Selected languages: $_selectedLanguages");
     notifyListeners();
   }
 
   void toggleRemote(bool value) {
     _selectedRemote = value ? 'Sim' : '';
+
+    // print("Selected remote: $_selectedRemote");
     notifyListeners();
   }
 }

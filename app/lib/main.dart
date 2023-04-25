@@ -4,7 +4,7 @@ import 'package:myapp/views/pages/map-screen.dart';
 import 'package:myapp/models/job.dart';
 import 'package:provider/provider.dart';
 import 'package:myapp/models/filter_model.dart';
-import 'package:myapp/models/language_selection_model.dart';
+import 'package:myapp/models/languages_remote_selection_model.dart';
 
 void main() {
   // Fetch jobs and create JobsProvider instance

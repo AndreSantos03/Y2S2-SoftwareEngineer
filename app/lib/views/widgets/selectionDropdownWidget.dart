@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:myapp/models/languages_remote_selection_model.dart';
 import 'package:myapp/utils.dart';
-import 'package:provider/provider.dart';
-import 'package:myapp/models/language_selection_model.dart';
 import 'package:myapp/views/widgets/languageConsumer.dart';
+import 'package:provider/provider.dart';
 
 class LanguageSelectionDropdown extends StatefulWidget {
   const LanguageSelectionDropdown({super.key});
@@ -12,10 +12,7 @@ class LanguageSelectionDropdown extends StatefulWidget {
       _LanguageSelectionDropdownState();
 }
 
-class _LanguageSelectionDropdownState extends State<LanguageSelectionDropdown> {
-  bool _isOpen = false;
-  final List<String> _selectedLanguages = [];
-  String _selectedRemote = '';
+class _LanguageSelectionDropdownState extends State<LanguageSelectionDropdown>{
 
   Color squaresColor = const Color.fromRGBO(102, 152, 173, 1);
 
@@ -32,7 +29,8 @@ class _LanguageSelectionDropdownState extends State<LanguageSelectionDropdown> {
       ),
       child: GestureDetector(
         onTap: () {
-          Provider.of<LanguageSelectionModel>(context, listen: false).toggleIsOpen();
+          Provider.of<LanguageSelectionModel>(context, listen: false)
+              .toggleIsOpen();
         },
         child: Container(
           padding: const EdgeInsets.all(16.0),
@@ -59,9 +57,9 @@ class _LanguageSelectionDropdownState extends State<LanguageSelectionDropdown> {
                 child: ExpansionTile(
                   title: Selector<LanguageSelectionModel, String>(
                     selector: (_, provider) =>
-                    provider.selectedLanguages.isNotEmpty
-                        ? provider.selectedLanguages.join(', ')
-                        : 'Linguagens de programação',
+                        provider.selectedLanguages.isNotEmpty
+                            ? provider.selectedLanguages.join(', ')
+                            : 'Linguagens de programação',
                     builder: (_, value, __) => Text(
                       value,
                       style: const TextStyle(
@@ -76,18 +74,21 @@ class _LanguageSelectionDropdownState extends State<LanguageSelectionDropdown> {
                     LanguageConsumer(language: 'Python'),
                     LanguageConsumer(language: 'Java'),
                     LanguageConsumer(language: 'JavaScript'),
-                    LanguageConsumer(language: 'Sql'),
+                    LanguageConsumer(language: 'SQL'),
                   ],
                 ),
               ),
               const SizedBox(height: 8.0),
-                Container(
-                  margin: const EdgeInsets.only(top: 16.0),
-                  child: ExpansionTile(
-                    title: Text(
-                      _selectedRemote.isNotEmpty
-                          ? 'Interesse em trabalho remoto: Sim'
-                          : 'Interesse em trabalho remoto',
+              Container(
+                margin: const EdgeInsets.only(top: 16.0),
+                child: ExpansionTile(
+                  title: Selector<LanguageSelectionModel, String>(
+                    selector: (_, provider) =>
+                    provider.selectedRemote.isNotEmpty
+                        ? 'Interesse em trabalho remoto: Sim'
+                        : 'Interesse em trabalho remoto',
+                    builder: (_, value, __) => Text(
+                      value,
                       style: const TextStyle(
                         color: Color(0xffffffff),
                         fontFamily: 'Poppins',
@@ -95,30 +96,33 @@ class _LanguageSelectionDropdownState extends State<LanguageSelectionDropdown> {
                         height: 1.3,
                       ),
                     ),
-                    children: [
-                      CheckboxListTile(
-                        activeColor: squaresColor,
-                        title: Text(
-                          _selectedRemote.isNotEmpty
-                              ? _selectedRemote
-                              : 'Sim',
-                          style: const TextStyle(
+                  ),
+                  children: [
+                    Consumer<LanguageSelectionModel>(
+                      builder: (_, provider, __) => CheckboxListTile(
+                        activeColor: const Color.fromRGBO(102, 152, 173, 1),
+                        title: const Text(
+                          'Sim',
+                          style: TextStyle(
                             color: Color(0xffffffff),
                             fontFamily: 'Poppins',
                             fontSize: 20,
                             height: 1.3,
                           ),
                         ),
-                        value: _selectedRemote == 'Sim',
+                        value: provider.selectedRemote.contains('Sim'),
                         onChanged: (value) {
-                          setState(() {
-                            _selectedRemote = value! ? 'Sim' : '';
-                          });
+                          if (value!) {
+                            provider.toggleRemote(true);
+                          } else {
+                            provider.toggleRemote(false);
+                          }
                         },
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
+              ),
             ],
           ),
         ),

@@ -23,7 +23,7 @@ class UserScreen extends StatelessWidget {
         physics: const AlwaysScrollableScrollPhysics(),
         child: Stack(
           children: [
-            GradientBackground(screenHeight: screenHeight + screenHeight * 0.35),
+            GradientBackground(screenHeight: screenHeight + screenHeight * 0.45),
             Positioned(
               top: screenHeight * 0.1,
               left: 0,

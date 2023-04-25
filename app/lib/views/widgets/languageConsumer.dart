@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../models/language_selection_model.dart';
+import '../../models/languages_remote_selection_model.dart';
 
 class LanguageConsumer extends StatelessWidget {
 
