@@ -59,77 +59,82 @@ class _FilterTechnologiesWidgetState extends State<FilterTechnologiesWidget> {
                   ),
                 ),
               ),
-              ListView.builder(
-                  shrinkWrap: true,
-                  itemCount: technologies.length,
-                  itemBuilder: (context, index) {
-                    return Container(
-                        width: double.infinity,
-                        margin: EdgeInsets.only(top: screenHeight * 0.01),
-                        padding: EdgeInsets.symmetric(
-                          horizontal: screenWidth * 0.05,
-                          vertical: 10,
-                        ),
-                        decoration:
-                        BoxDecoration(
-                          borderRadius: BorderRadius.circular(10.0),
-                          color: const Color.fromRGBO(255, 255, 255, 0.83),
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              technologies[index].string,
-                              textAlign: TextAlign.center,
-                              style: SafeGoogleFont(
-                                'Poppins',
-                                fontSize: 16,
-                                fontWeight: FontWeight.w700,
-                                height: 1.5,
-                                color: const Color(0x93050505),
+              Column(
+                children: [
+                  SizedBox(height: screenHeight * 0.06), // Add space here
+                  ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: technologies.length,
+                    itemBuilder: (context, index) {
+                      return Container(
+                          width: double.infinity,
+                          margin: EdgeInsets.only(top: screenHeight * 0.01),
+                          padding: EdgeInsets.symmetric(
+                            horizontal: screenWidth * 0.05,
+                            vertical: 10,
+                          ),
+                          decoration:
+                          BoxDecoration(
+                            borderRadius: BorderRadius.circular(10.0),
+                            color: const Color.fromRGBO(255, 255, 255, 0.83),
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                technologies[index].string,
+                                textAlign: TextAlign.center,
+                                style: SafeGoogleFont(
+                                  'Poppins',
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w700,
+                                  height: 1.5,
+                                  color: const Color(0x93050505),
+                                ),
                               ),
-                            ),
-                            SizedBox(
-                              height: 25,
-                              child: Checkbox(
-                                value: isCheckedList[index],
-                                onChanged: (bool? newValue) {
+                              SizedBox(
+                                height: 25,
+                                child: Checkbox(
+                                  value: isCheckedList[index],
+                                  onChanged: (bool? newValue) {
 
-                                  setState(() {
-                                    isCheckedList[index] = newValue ?? false;
-                                  });
+                                    setState(() {
+                                      isCheckedList[index] = newValue ?? false;
+                                    });
 
-                                  // Update the technologyFilters list based on the checkbox value
-                                  List<Technology> updatedTechnologyFilters = List<Technology>.from(filterParameters.technologyFilters);
+                                    // Update the technologyFilters list based on the checkbox value
+                                    List<Technology> updatedTechnologyFilters = List<Technology>.from(filterParameters.technologyFilters);
 
-                                  if (newValue == true) {
-                                    // Checkbox is checked, add the selected technology to the filters
-                                    updatedTechnologyFilters.add(technologies[index]);
-                                  } else {
-                                    // Checkbox is unchecked, remove the selected technology from the filters
-                                    List<Technology> newUpdatedTechnologyFilters = [];
+                                    if (newValue == true) {
+                                      // Checkbox is checked, add the selected technology to the filters
+                                      updatedTechnologyFilters.add(technologies[index]);
+                                    } else {
+                                      // Checkbox is unchecked, remove the selected technology from the filters
+                                      List<Technology> newUpdatedTechnologyFilters = [];
 
-                                    for (var technology in updatedTechnologyFilters) {
-                                      if (technology.id != technologies[index].id) {
-                                        newUpdatedTechnologyFilters.add(technology);
+                                      for (var technology in updatedTechnologyFilters) {
+                                        if (technology.id != technologies[index].id) {
+                                          newUpdatedTechnologyFilters.add(technology);
+                                        }
                                       }
+
+                                      updatedTechnologyFilters = newUpdatedTechnologyFilters;
                                     }
 
-                                    updatedTechnologyFilters = newUpdatedTechnologyFilters;
-                                  }
+                                    // Update the filter parameters with the new technology filters
+                                    Filter newFilter = filterParameters.copyWith(technologyFilters: updatedTechnologyFilters);
 
-                                  // Update the filter parameters with the new technology filters
-                                  Filter newFilter = filterParameters.copyWith(technologyFilters: updatedTechnologyFilters);
-
-                                  // Notify the listeners of the change
-                                  Provider.of<Filter>(context, listen: false).updateFilterTechnology(newFilter, index, newValue ?? false);
-                                },
-                              ),
-                            )
-                          ],
-                        ));
-                  }),
-            ]
+                                    // Notify the listeners of the change
+                                    Provider.of<Filter>(context, listen: false).updateFilterTechnology(newFilter, index, newValue ?? false);
+                                  },
+                                ),
+                              )
+                            ],
+                          ));
+                    }),
+        ],
+              ),
+            ],
         ),
       );
   }

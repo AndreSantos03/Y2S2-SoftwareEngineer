@@ -45,7 +45,7 @@ class _FilterPriceWidgetState extends State<FilterPriceWidget> {
 
     return
       Padding(
-        padding: EdgeInsets.only(top: screenHeight * 0.16),
+        padding: EdgeInsets.only(top: screenHeight * 0.02),
         child: Stack(
             children: [
               Positioned(

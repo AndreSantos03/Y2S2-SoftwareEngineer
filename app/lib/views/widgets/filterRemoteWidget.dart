@@ -53,7 +53,7 @@ class _FilterRemoteWidgetState extends State<FilterRemoteWidget> {
             itemBuilder: (context, index) {
               return Container(
                 width: double.infinity,
-                margin: EdgeInsets.only(top: screenHeight * 0.01),
+                margin: EdgeInsets.only(top: screenHeight * 0.06),
                 padding: EdgeInsets.symmetric(
                   horizontal: screenWidth * 0.05,
                   vertical: 10,
