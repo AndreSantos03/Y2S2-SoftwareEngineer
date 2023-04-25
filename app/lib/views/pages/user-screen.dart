@@ -5,6 +5,7 @@ import 'package:myapp/views/widgets/inputTextBoxWidget.dart';
 import 'package:myapp/views/widgets/navBar.dart';
 import 'package:myapp/views/widgets/rectangularButtonWidget.dart';
 import 'package:myapp/views/widgets/selectionDropdownWidget.dart';
+import 'package:myapp/views/pages/change-password-screen.dart';
 
 class UserScreen extends StatelessWidget {
   final TextEditingController usernameController = TextEditingController();
@@ -23,7 +24,8 @@ class UserScreen extends StatelessWidget {
         physics: const AlwaysScrollableScrollPhysics(),
         child: Stack(
           children: [
-            GradientBackground(screenHeight: screenHeight + screenHeight * 0.45),
+            GradientBackground(
+                screenHeight: screenHeight + screenHeight * 0.45),
             Positioned(
               top: screenHeight * 0.1,
               left: 0,
@@ -79,16 +81,21 @@ class UserScreen extends StatelessWidget {
                 right: screenWidth * 0.35,
                 child: RectangularButton(
                   text: 'Alterar password',
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => ChangePasswordScreen()),
+                    );
+                  },
                   horizontalMargin: 0,
                   backGroundColor: const Color.fromRGBO(102, 152, 173, 1),
                 )),
             Positioned(
-              top: screenHeight * 0.76,
+                top: screenHeight * 0.76,
                 left: 0,
                 right: 0,
-                child: const LanguageSelectionDropdown()
-            ),
+                child: const LanguageSelectionDropdown()),
           ],
         ),
       ),
