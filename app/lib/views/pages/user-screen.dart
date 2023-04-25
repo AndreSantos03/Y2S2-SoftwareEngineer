@@ -25,7 +25,7 @@ class UserScreen extends StatelessWidget {
         child: Stack(
           children: [
             GradientBackground(
-                screenHeight: screenHeight + screenHeight * 0.45),
+                screenHeight: screenHeight + screenHeight * 0.55),
             Positioned(
               top: screenHeight * 0.1,
               left: 0,
@@ -61,7 +61,12 @@ class UserScreen extends StatelessWidget {
                   hintText: '(email : firebase)',
                 )),
             Positioned(
-              top: screenHeight * 0.58,
+                top: screenHeight * 0.55,
+                left: 0,
+                right: 0,
+                child: RectangularButton(text: 'Save', onPressed: () {}, horizontalMargin: screenWidth * 0.15, backGroundColor: const Color.fromRGBO(102, 152, 173, 1))),
+            Positioned(
+              top: screenHeight * 0.66,
               left: screenWidth * 0.05,
               child: Text(
                 'Password:',
@@ -76,7 +81,7 @@ class UserScreen extends StatelessWidget {
               ),
             ),
             Positioned(
-                top: screenHeight * 0.63,
+                top: screenHeight * 0.71,
                 left: screenWidth * 0.048,
                 right: screenWidth * 0.35,
                 child: RectangularButton(
@@ -92,7 +97,7 @@ class UserScreen extends StatelessWidget {
                   backGroundColor: const Color.fromRGBO(102, 152, 173, 1),
                 )),
             Positioned(
-                top: screenHeight * 0.76,
+                top: screenHeight * 0.83,
                 left: 0,
                 right: 0,
                 child: const LanguageSelectionDropdown()),
