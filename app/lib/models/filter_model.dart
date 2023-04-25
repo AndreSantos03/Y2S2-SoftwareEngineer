@@ -8,21 +8,32 @@ class Filter extends ChangeNotifier {
   late bool remote;
   late List<Technology> technologyFilters;
 
-  Filter({List<Salary>? salaryFilters, bool? remote, List<Technology>? technologyFilters}) {
+  // To be used if the user wants to filters jobs by his personal settings
+  late bool userRemote;
+  late List<Technology> userTechnologyFilters;
+
+  Filter({List<Salary>? salaryFilters, bool? remote, List<Technology>? technologyFilters, bool? userRemote, List<Technology>? userTechnologyFilters}) {
     this.salaryFilters = salaryFilters ?? Salary.noFilterSalary;
     this.remote = remote ?? false;
     this.technologyFilters = technologyFilters ?? [const Technology(id: 0, string: ' ')];
+
+    this.userRemote = userRemote ?? false;
+    this.userTechnologyFilters = userTechnologyFilters ?? [const Technology(id: 0, string: ' ')];
   }
 
   Filter copyWith({
     List<Salary>? salaryFilters,
     bool? remote,
     List<Technology>? technologyFilters,
+    bool? userRemote,
+    List<Technology>? userTechnologyFilters,
   }) {
     return Filter(
       salaryFilters: salaryFilters ?? this.salaryFilters,
       remote: remote ?? this.remote,
       technologyFilters: technologyFilters ?? this.technologyFilters,
+      userRemote: userRemote ?? this.userRemote,
+      userTechnologyFilters: userTechnologyFilters ?? this.userTechnologyFilters,
     );
   }
 

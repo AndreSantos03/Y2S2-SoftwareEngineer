@@ -50,7 +50,7 @@ class _NavBarState extends State<NavBar> {
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => const UserScreen()),
+              MaterialPageRoute(builder: (context) => UserScreen()),
             );
           },
         ),
