@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:myapp/utils.dart';
 import 'package:myapp/views/pages/filter-screen.dart';
@@ -17,7 +18,7 @@ Future main() async{
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  print("Aqui");
+  FirebaseAuth.instance.signOut();
   // Fetch jobs and create JobsProvider instance
   final jobsProvider = JobsProvider();
   jobsProvider.fetchJobs();
@@ -54,7 +55,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const SignInScreen(),
+      home: const MapScreen(),
     );
   }
 }

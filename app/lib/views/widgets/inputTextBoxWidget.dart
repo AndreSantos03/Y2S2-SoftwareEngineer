@@ -4,8 +4,9 @@ class InputTextBox extends StatelessWidget {
   final TextEditingController controller;
   final String topText;
   final String hintText;
+  final bool obsText;
 
-  const InputTextBox({Key? key, required this.controller, required this.topText, required this.hintText}) : super(key: key);
+  const InputTextBox({Key? key, required this.controller, required this.topText, required this.hintText, required this.obsText}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -40,6 +41,7 @@ class InputTextBox extends StatelessWidget {
             ),
             padding: const EdgeInsets.all(20.0),
             child: TextField(
+              obscureText: obsText,
               controller: controller,
               style: const TextStyle(
                 fontFamily: 'Poppins',
