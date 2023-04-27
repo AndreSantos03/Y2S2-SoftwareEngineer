@@ -185,7 +185,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
           email: emailController.text.trim(),
           password: passwordController.text.trim(),
         );
-
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => MapScreen()),
+        );
       } on FirebaseAuthException catch (e) {
         if (e.code == 'weak-password') {
           errorMessage = 'The password provided is too weak.';
