@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:myapp/utils.dart';
 import 'package:myapp/views/pages/user-screen.dart';
@@ -43,7 +44,8 @@ class ChangePasswordScreen extends StatelessWidget {
               child: InputTextBox(
                   controller: passwordAtualController,
                   topText: 'Password atual',
-                  hintText: '')),
+                  hintText: '',
+                obsText: true,)),
           Positioned(
               top: screenHeight * 0.35,
               left: 0,
@@ -51,7 +53,8 @@ class ChangePasswordScreen extends StatelessWidget {
               child: InputTextBox(
                   controller: passwordNovaController,
                   topText: 'Password nova',
-                  hintText: '')),
+                  hintText: '',
+                  obsText: true,)),
           Positioned(
               top: screenHeight * 0.55,
               left: 0,
@@ -59,14 +62,15 @@ class ChangePasswordScreen extends StatelessWidget {
               child: InputTextBox(
                   controller: confirmarPasswordNovaController,
                   topText: 'Confirmar password nova',
-                  hintText: '')),
+                  hintText: '',
+                obsText: true,)),
           Positioned(
             top: screenHeight * 0.8,
             left: 0,
             right: 0,
             child: RectangularButton(
                 text: 'Alterar password',
-                onPressed: () {},
+                onPressed: () =>changePassword(context),
                 horizontalMargin: screenWidth * 0.18,
                 backGroundColor: const Color.fromRGBO(102, 152, 173, 1)),
           ),
@@ -89,5 +93,30 @@ class ChangePasswordScreen extends StatelessWidget {
       ),
       backgroundColor: Colors.black,
     );
+  }
+  void changePassword(BuildContext context) async {
+    try {
+      User? user = FirebaseAuth.instance.currentUser;
+      String? email = user?.email;
+      await FirebaseAuth.instance.sendPasswordResetEmail(email: email!);
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Password reset email sent!'),
+          duration: Duration(seconds: 2),
+        ),
+      );
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => UserScreen()));
+    } catch (e) {
+      // Handle any errors during the password reset process
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Failed to reset password.'),
+          duration: Duration(seconds: 2),
+        ),
+      );
+      print('Error while resetting password: $e');
+    }
   }
 }

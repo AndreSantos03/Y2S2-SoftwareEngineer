@@ -1,8 +1,11 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:myapp/views/pages/map-screen.dart';
 import 'package:myapp/views/pages/user-screen.dart';
 import 'package:myapp/views/pages/offers-screen.dart';
+
+import '../pages/sign-in-screen.dart';
 
 class NavBar extends StatefulWidget {
   final int pageNumber; // offersScreen : 0 , mapScreen : 1 , userScreen : 2
@@ -48,12 +51,22 @@ class _NavBarState extends State<NavBar> {
         GButton(
           icon: Icons.verified_user,
           onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => UserScreen()),
-            );
-          },
-        ),
+            final user = FirebaseAuth.instance.currentUser;
+            if (user != null) {
+              print(user.email);
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => UserScreen()),
+              );
+            } else {
+                Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const SignInScreen()),
+                );
+              }
+            }
+        )
+
       ],
     );
   }

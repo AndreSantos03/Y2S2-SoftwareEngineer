@@ -41,6 +41,8 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   google_fonts: ^3.0.1
+  firebase_core: ^2.10.0
+  firebase_auth: ^4.4.2
 
 dev_dependencies:
   flutter_test:
@@ -105,6 +107,7 @@ flutter:
     - assets/icons-img/facebook.png
     - assets/icons-img/linkedin.png
     - assets/icons-img/twitter.png
+    - assets/page-1/images/loginScreenImg.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
