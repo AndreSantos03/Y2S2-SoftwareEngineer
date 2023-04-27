@@ -42,6 +42,7 @@ class InputTextBox extends StatelessWidget {
             padding: const EdgeInsets.all(20.0),
             child: TextField(
               obscureText: obsText,
+
               controller: controller,
               style: const TextStyle(
                 fontFamily: 'Poppins',

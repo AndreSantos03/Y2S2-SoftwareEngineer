@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:myapp/utils.dart';
-import 'package:myapp/views/pages/filter-screen.dart';
 import 'package:myapp/views/pages/map-screen.dart';
 import 'package:myapp/views/pages/discrict-screen.dart';
 import 'package:myapp/views/pages/sign-in-screen.dart';
@@ -12,6 +11,8 @@ import 'package:myapp/models/filter_model.dart';
 import 'package:myapp/models/salary_model.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
+
+import 'package:myapp/models/languages_remote_selection_model.dart';
 
 Future main() async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -33,6 +34,7 @@ Future main() async{
         ChangeNotifierProvider<Filter>(
           create: (context) => Filter(),
         ),
+        ChangeNotifierProvider(create: (_) => LanguageSelectionModel()),
       ],
       child: const MyApp(),
     ),

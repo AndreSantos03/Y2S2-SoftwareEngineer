@@ -40,4 +40,5 @@ class RectangularButton extends StatelessWidget {
       ),
     );
   }
+
 }

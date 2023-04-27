@@ -56,7 +56,7 @@ class _NavBarState extends State<NavBar> {
               print(user.email);
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const UserScreen()),
+                MaterialPageRoute(builder: (context) => UserScreen()),
               );
             } else {
                 Navigator.push(
