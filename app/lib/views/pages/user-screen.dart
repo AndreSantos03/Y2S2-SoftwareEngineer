@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:myapp/utils.dart';
 import 'package:myapp/views/widgets/gradientBackground.dart';
@@ -6,6 +7,8 @@ import 'package:myapp/views/widgets/navBar.dart';
 import 'package:myapp/views/widgets/rectangularButtonWidget.dart';
 import 'package:myapp/views/widgets/selectionDropdownWidget.dart';
 import 'package:myapp/views/pages/change-password-screen.dart';
+
+import 'map-screen.dart';
 
 class UserScreen extends StatelessWidget {
   final TextEditingController usernameController = TextEditingController();
@@ -99,14 +102,39 @@ class UserScreen extends StatelessWidget {
                   backGroundColor: const Color.fromRGBO(102, 152, 173, 1),
                 )),
             Positioned(
-                top: screenHeight * 0.83,
-                left: 0,
-                right: 0,
-                child: const LanguageSelectionDropdown()),
+              top: screenHeight * 0.83,
+              left: 0,
+              right: 0,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  const LanguageSelectionDropdown(),
+                  const SizedBox(height: 16),
+                  // add some space between the widgets
+                  RectangularButton(
+                      text: 'Logout',
+                      onPressed: () =>logOut(context),
+                      horizontalMargin: screenWidth * 0.15,
+                      backGroundColor: const Color.fromRGBO(102, 152, 173, 1)),
+                ],
+              ),
+            )
+
           ],
         ),
       ),
       backgroundColor: Colors.black,
     );
+  }
+  Future<void> logOut(BuildContext context) async {
+    try {
+      await FirebaseAuth.instance.signOut();
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => MapScreen()),
+      );
+    } catch (e) {
+      print('Error: $e');
+    }
   }
 }
