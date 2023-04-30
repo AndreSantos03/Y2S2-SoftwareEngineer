@@ -1,9 +1,12 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:myapp/models/languages_remote_selection_model.dart';
 import 'package:myapp/utils.dart';
 import 'package:myapp/views/widgets/languageConsumer.dart';
 import 'package:myapp/views/widgets/rectangularButtonWidget.dart';
 import 'package:provider/provider.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class LanguageSelectionDropdown extends StatefulWidget {
   const LanguageSelectionDropdown({super.key});
@@ -13,7 +16,10 @@ class LanguageSelectionDropdown extends StatefulWidget {
       _LanguageSelectionDropdownState();
 }
 
+
+
 class _LanguageSelectionDropdownState extends State<LanguageSelectionDropdown>{
+
 
   Color squaresColor = const Color.fromRGBO(102, 152, 173, 1);
 
@@ -131,4 +137,7 @@ class _LanguageSelectionDropdownState extends State<LanguageSelectionDropdown>{
       ),
     );
   }
+
+
+
 }
