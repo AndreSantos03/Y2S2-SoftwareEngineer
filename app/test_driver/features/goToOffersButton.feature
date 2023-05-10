@@ -1,5 +1,5 @@
-Feature: Map Screen changes to User Screen
-  Scenario: When I am on Map Screen and I click the user button it changes to User Screen
-    Given I have "userButton"
-    Then I tap the "userButton" button
-    # Then I should have "signInScreen" on screen
+Feature: Map Screen changes to Offers Screen
+  Scenario: When I am on Map Screen and I click the offers button it changes to User Screen
+    Given I have "searchButton"
+    Then I tap the "searchButton" button
+    Then I should have "offersScreen" on screen
