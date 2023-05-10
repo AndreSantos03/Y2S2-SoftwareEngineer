@@ -25,16 +25,14 @@ void main() {
     ];
 });
 
-
-  // Test that if we apply filters, the jobs list is shorter (or equal - rarely)
   test("Test salaries filters", () async {
     List<Job>? jobsList = jobs;
 
     List<Salary> salaries = [];
 
     // Mock some filters
-    salaries.add(Salary.salaries[0]); // 5000 - 10000
-    salaries.add(Salary.salaries[4]); // 60000 - 80000
+    salaries.add(Salary.salaries[0]); // 5k - 10k
+    salaries.add(Salary.salaries[4]); // 60k - 80k
 
     Filter filters = Filter(salaryFilters: salaries);
 
@@ -47,5 +45,76 @@ void main() {
     print("Filtered jobs: $filteredJobsLength");
 
     expect(jobsLength! >= filteredJobsLength, isTrue);
+    expect(filteredJobsLength == 2, isTrue);
+
+    for (Job job in filteredJobs) {
+      expect((job.wage! >= 5000 && job.wage! < 10000) || (job.wage! >= 60000 && job.wage! < 80000), isTrue);
+    }
+  });
+
+  test("Test technology filters", () async {
+    List<Job>? jobsList = jobs;
+
+    List<Technology> technologies = [];
+
+    // Mock some filters
+    technologies.add(Technology.technologies[0]); // python
+    technologies.add(Technology.technologies[2]); // javascript
+
+    Filter filters = Filter(technologyFilters: technologies);
+
+    List<Job> filteredJobs = filters.applyFilter(jobs!);
+
+    int? jobsLength = jobsList?.length;
+    int filteredJobsLength = filteredJobs.length;
+
+    print("Jobs: $jobsLength");
+    print("Filtered jobs: $filteredJobsLength");
+
+    expect(jobsLength! >= filteredJobsLength, isTrue);
+    expect(filteredJobsLength! == 5, isTrue);
+  });
+
+  test("Test remote filter", () async {
+    List<Job>? jobsList = jobs;
+
+    Filter filters = Filter(remote: true);
+
+    List<Job> filteredJobs = filters.applyFilter(jobs!);
+
+    int? jobsLength = jobsList?.length;
+    int filteredJobsLength = filteredJobs.length;
+
+    print("Jobs: $jobsLength");
+    print("Filtered jobs: $filteredJobsLength");
+
+    expect(jobsLength! >= filteredJobsLength, isTrue);
+    expect(filteredJobsLength! == 6, isTrue);
+  });
+
+  test("Test filters combined", () async {
+    List<Job>? jobsList = jobs;
+
+    List<Salary> salaries = [];
+    List<Technology> technologies = [];
+
+    // Mock some filters
+    salaries.add(Salary.salaries[2]); // 20k - 40k
+    salaries.add(Salary.salaries[3]); // 40k - 60k
+    technologies.add(Technology.technologies[0]); // python
+    technologies.add(Technology.technologies[2]); // javascript
+
+    Filter filters = Filter(salaryFilters: salaries, technologyFilters: technologies, remote: true);
+
+    List<Job> filteredJobs = filters.applyFilter(jobs!);
+
+    int? jobsLength = jobsList?.length;
+    int filteredJobsLength = filteredJobs.length;
+
+    print("Jobs: $jobsLength");
+    print("Filtered jobs: $filteredJobsLength");
+
+    expect(jobsLength! >= filteredJobsLength, isTrue);
+    expect(filteredJobsLength! == 3, isTrue);
   });
 }
