@@ -20,6 +20,7 @@ class _MapScreenState extends State<MapScreen> {
     double aspectRatio = MediaQuery.of(context).size.aspectRatio;
 
     return Scaffold(
+      key: const Key("mapScreen"),
       bottomNavigationBar: const NavBar(
         pageNumber: 1,
       ),

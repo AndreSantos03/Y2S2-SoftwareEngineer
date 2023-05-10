@@ -35,6 +35,7 @@ class _OffersScreenState extends State<OffersScreen> {
     double screenHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
+      key: const Key("offersScreen"),
       bottomNavigationBar: const NavBar(
         pageNumber: 0,
       ),
