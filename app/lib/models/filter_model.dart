@@ -8,7 +8,7 @@ class Filter extends ChangeNotifier {
   late bool remote;
   late List<Technology> technologyFilters;
 
-  Filter({List<Salary>? salaryFilters, bool? remote, List<Technology>? technologyFilters, bool? userRemote, List<Technology>? userTechnologyFilters}) {
+  Filter({List<Salary>? salaryFilters, bool? remote, List<Technology>? technologyFilters}) {
     this.salaryFilters = salaryFilters ?? Salary.noFilterSalary;
     this.remote = remote ?? false;
     this.technologyFilters = technologyFilters ?? [const Technology(id: 0, string: ' ')];
