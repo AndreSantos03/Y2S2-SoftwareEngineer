@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:myapp/models/job.dart';
-import 'package:myapp/remoteService.dart';
 import 'package:myapp/utils.dart';
 import 'package:myapp/views/pages/district-jobs.dart';
 import 'package:myapp/views/pages/map-screen.dart';
@@ -10,9 +9,9 @@ import 'package:myapp/models/filter_model.dart';
 import 'package:provider/provider.dart';
 
 class DistrictScreen extends StatefulWidget {
-  int id;
+  final int id;
 
-  DistrictScreen({Key? key, required this.id}) : super(key: key);
+  const DistrictScreen({Key? key, required this.id}) : super(key: key);
 
   @override
   State<DistrictScreen> createState() => _DistrictScreenState();
@@ -40,35 +39,27 @@ class _DistrictScreenState extends State<DistrictScreen> {
     22: 'Viana do Castelo',
   };
 
-  List<Job>? jobs;
-  var isLoaded = false;
-
-  getData() async {
-    jobs = await RemoteService()
-        .getJobs(q: idDistrict[widget.id]!); // Query: district name
-    if (jobs != null) {
-      setState(() {
-        isLoaded = true;
-      });
-    }
-  }
-
-  @override
-  void initState() {
-    super.initState();
-
-    // fetch data from API
-    getData();
-  }
+  late List<Job> allJobs;
+  List<Job> jobsFromDistrict = [];
 
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
 
+    allJobs = Provider.of<JobsProvider>(context).jobs;
+
+    for (Job job in allJobs) {
+      for (var loc in job.locationId ?? []) {
+        if (loc['id'].toString() == widget.id.toString()) {
+          jobsFromDistrict.add(job);
+        }
+      }
+    }
+
     final filter = Provider.of<Filter>(context, listen: false);
-    if (jobs != null) {
-      jobs = filter.applyFilter(jobs!);
+    if (jobsFromDistrict != null) {
+      jobsFromDistrict = filter.applyFilter(jobsFromDistrict!);
     }
 
     return Scaffold(
@@ -139,7 +130,7 @@ class _DistrictScreenState extends State<DistrictScreen> {
             top: screenHeight * 0.323,
             right: screenWidth * 0.18,
             child: Text(
-              jobs?.length.toString() ?? '0',
+              jobsFromDistrict?.length.toString() ?? '0',
               textAlign: TextAlign.center,
               style: SafeGoogleFont(
                 'Poppins',
@@ -188,7 +179,7 @@ class _DistrictScreenState extends State<DistrictScreen> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => DistrictJobsScreen(id: widget.id, jobs: jobs),
+                    builder: (context) => DistrictJobsScreen(id: widget.id, jobs: jobsFromDistrict),
                   ),
                 );
               },
@@ -219,7 +210,7 @@ class _DistrictScreenState extends State<DistrictScreen> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => DistrictJobsScreen(id: widget.id, jobs: jobs),
+                    builder: (context) => DistrictJobsScreen(id: widget.id, jobs: jobsFromDistrict),
                   ),
                 );
               },

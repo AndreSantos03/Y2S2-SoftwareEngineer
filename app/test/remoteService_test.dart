@@ -16,14 +16,6 @@ void main() {
   test("District Search is working", () async {
     List<Job>? aveiroList = await remoteService.getJobs(q: "Aveiro");
 
-/*
-    aveiroList?.forEach((obj) {
-      print(obj.locationId?.any((loc) => loc['id'] == "1"));
-      print('Location ID:');
-      obj.locationId?.forEach((loc) => print('  id: ${loc['id']}'));
-      print("-------------------------")
-    });
-*/
 
     aveiroList?.forEach((obj) {
       print(obj.locationId?.any((loc) => loc['id'] == "1"));
