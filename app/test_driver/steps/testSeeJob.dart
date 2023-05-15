@@ -44,7 +44,7 @@ class CheckJob extends Then1WithWorld<String, FlutterWorld> {
   Pattern get pattern => RegExp(r"I should see {string}");
 }
 
-class ScrollFor2Seconds extends Then1WithWorld<String, FlutterWorld> {
+class ScrollFor2Seconds extends When1WithWorld<String, FlutterWorld> {
   @override
   Future<void> executeStep(String input1) async {
     // TODO: implement executeStep

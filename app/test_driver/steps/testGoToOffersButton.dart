@@ -4,7 +4,7 @@ import 'package:gherkin/gherkin.dart';
 
 class CheckMapScreen extends Given1WithWorld<String, FlutterWorld> {
   @override
-  Future<void> executeStep(String input1) async{
+  Future<void> executeStep(String input1) async {
     // TODO: implement executeStep
 
     final buttonInput1 = find.byValueKey(input1);
@@ -19,7 +19,7 @@ class CheckMapScreen extends Given1WithWorld<String, FlutterWorld> {
   Pattern get pattern => RegExp(r"I have {string}");
 }
 
-class ClickSearchButton extends Then1WithWorld<String, FlutterWorld> {
+class ClickSearchButton extends When1WithWorld<String, FlutterWorld> {
   @override
   Future<void> executeStep(String input1) async {
     // TODO: implement executeStep

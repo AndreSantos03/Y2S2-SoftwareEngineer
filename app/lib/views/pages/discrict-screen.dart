@@ -64,6 +64,7 @@ class _DistrictScreenState extends State<DistrictScreen> {
 
     return Scaffold(
       body: Stack(
+        key: Key("districtScreen${widget.id}"),
         children: [
           GradientBackground(screenHeight: screenHeight),
           // Go back arrow
@@ -202,6 +203,7 @@ class _DistrictScreenState extends State<DistrictScreen> {
           ),
           // Texto ver todos os empregos
           Positioned(
+            key: const Key("districtJobsButton"),
             top: screenHeight * 0.874,
             left: 0,
             right: 0,
