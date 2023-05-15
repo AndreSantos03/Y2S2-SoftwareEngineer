@@ -34,6 +34,7 @@ class _MapScreenState extends State<MapScreen> {
           top: screenHeight / 12,
           child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
             TextButton(
+              key: const Key("filterButton"),
               onPressed: () {
                 // Changes to the other screen
                 Navigator.push(

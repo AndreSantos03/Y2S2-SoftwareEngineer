@@ -27,9 +27,11 @@ class _FilterScreenState extends State<FilterScreen> {
     LanguageSelectionModel lsm = Provider.of<LanguageSelectionModel>(context);
 
     return Scaffold(
+      key: const Key("filterScreen"),
       appBar: AppBar(
         centerTitle: true,
         leading: IconButton(
+          key: const Key("goBackToMapScreenButton"),
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
             Navigator.push(

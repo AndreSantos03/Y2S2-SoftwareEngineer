@@ -97,6 +97,7 @@ class _FilterPriceWidgetState extends State<FilterPriceWidget> {
                                 SizedBox(
                                   height: 25,
                                   child: Checkbox(
+                                    key: Key("checkBoxSalary$index"),
                                     value: isCheckedList[index],
                                     onChanged: (bool? newValue) {
                                       setState(() {

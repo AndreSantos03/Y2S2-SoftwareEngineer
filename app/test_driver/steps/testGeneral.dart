@@ -2,16 +2,15 @@ import 'package:flutter_driver/flutter_driver.dart';
 import 'package:flutter_gherkin/flutter_gherkin.dart';
 import 'package:gherkin/gherkin.dart';
 
-class CheckOffersScreen2 extends Given1WithWorld<String, FlutterWorld> {
+// Works for 'I am on {string}'
+// Should be used only in Given as this waits 8 seconds to load jobs
+class GivenIAmOnScreen extends Given1WithWorld<String, FlutterWorld> {
   @override
   Future<void> executeStep(String input1) async {
     // TODO: implement executeStep
 
     // Wait for 8 seconds (jobs might take a while to load)
     await Future.delayed(const Duration(seconds: 8));
-
-    // First navigate to offers by clicking the button (this is already tested in goToOffersButton.feature)
-    await FlutterDriverUtils.tap(world.driver, find.byValueKey("searchButton"));
 
     final offersScreenFinder = find.byValueKey(input1);
 
@@ -26,40 +25,35 @@ class CheckOffersScreen2 extends Given1WithWorld<String, FlutterWorld> {
   Pattern get pattern => RegExp(r"I am on {string}");
 }
 
-class CheckJob extends Then1WithWorld<String, FlutterWorld> {
+// Works for 'I should have {string}'
+class CheckSomething extends Given1WithWorld<String, FlutterWorld> {
   @override
   Future<void> executeStep(String input1) async {
     // TODO: implement executeStep
 
-    final jobFinder = find.byValueKey(input1);
+    final buttonInput1 = find.byValueKey(input1);
 
-    // Check if job is present
-    bool input1Exists = await FlutterDriverUtils.isPresent(world.driver, jobFinder);
+    bool input1Exists = await FlutterDriverUtils.isPresent(world.driver, buttonInput1);
 
     expect(input1Exists, true);
   }
 
   @override
   // TODO: implement pattern
-  Pattern get pattern => RegExp(r"I should see {string}");
+  Pattern get pattern => RegExp(r"I should have {string}");
 }
 
-class ScrollFor2Seconds extends When1WithWorld<String, FlutterWorld> {
+// Works for 'I tap {string}'
+class TapSomething extends When1WithWorld<String, FlutterWorld> {
   @override
   Future<void> executeStep(String input1) async {
     // TODO: implement executeStep
-    final jobListFinder = find.byValueKey(input1);
+    final finder = find.byValueKey(input1);
 
-    await world.driver?.scroll(
-      jobListFinder,
-      0.0,
-      -1000.0,
-      const Duration(milliseconds: 300),
-      timeout: const Duration(seconds: 2),
-    );
+    await FlutterDriverUtils.tap(world.driver, finder);
   }
 
   @override
   // TODO: implement pattern
-  Pattern get pattern => RegExp(r"I scroll {string} for 2 seconds");
+  Pattern get pattern => RegExp(r"I tap {string}");
 }
