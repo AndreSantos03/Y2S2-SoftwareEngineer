@@ -11,6 +11,9 @@ void main() async {
   enableFlutterDriverExtension();
   WidgetsFlutterBinding.ensureInitialized();
   final jobsProvider = JobsProvider();
+
+  jobsProvider.fetchJobs();
+
   runApp(
     MultiProvider(
       providers: [
