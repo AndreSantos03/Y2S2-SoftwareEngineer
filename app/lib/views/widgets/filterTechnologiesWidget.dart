@@ -95,6 +95,7 @@ class _FilterTechnologiesWidgetState extends State<FilterTechnologiesWidget> {
                               SizedBox(
                                 height: 25,
                                 child: Checkbox(
+                                  key: Key("checkBoxTechnology$index"),
                                   value: isCheckedList[index],
                                   onChanged: (bool? newValue) {
 

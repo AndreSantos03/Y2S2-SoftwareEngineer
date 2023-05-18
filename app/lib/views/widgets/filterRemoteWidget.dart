@@ -80,6 +80,7 @@ class _FilterRemoteWidgetState extends State<FilterRemoteWidget> {
                     SizedBox(
                       height: 25,
                       child: Checkbox(
+                        key : const Key("checkBoxRemote"),
                         value: isChecked,
                         onChanged: (bool? newValue) {
                           setState(() {

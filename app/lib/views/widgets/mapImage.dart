@@ -13,6 +13,7 @@ class MapImage extends StatelessWidget {
     double screenHeight = MediaQuery.of(context).size.height;
 
     return Padding(
+      key: const Key("mapImage"),
       padding: EdgeInsets.only(top: screenHeight * 0.1),
       child:
       Center(
@@ -29,7 +30,7 @@ class MapImage extends StatelessWidget {
               ),
               // Hitboxes
               // Aveiro (id 1)
-              MapHitbox(constraints: constraints, xRatio: 0.3, yRatio: 0.2, widthRatio: 0.1, heightRatio: 0.1, districtId: 1, opacity: opacity, color: Colors.blue),
+              MapHitbox(key: const Key("aveiro"),constraints: constraints, xRatio: 0.3, yRatio: 0.2, widthRatio: 0.1, heightRatio: 0.1, districtId: 1, opacity: opacity, color: Colors.blue),
               // Beja (id 3)
               MapHitbox(constraints: constraints, xRatio: 0.4, yRatio: 0.64, widthRatio: 0.23, heightRatio: 0.12, districtId: 3, opacity: opacity),
               MapHitbox(constraints: constraints, xRatio: 0.27, yRatio: 0.71, widthRatio: 0.3, heightRatio: 0.06, districtId: 3, opacity: opacity),

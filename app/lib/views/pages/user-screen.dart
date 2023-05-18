@@ -22,6 +22,7 @@ class UserScreen extends StatelessWidget {
     double screenHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
+      key: const Key("userScreen"),
       bottomNavigationBar: const NavBar(pageNumber: 2),
       body: SingleChildScrollView(
         physics: const AlwaysScrollableScrollPhysics(),

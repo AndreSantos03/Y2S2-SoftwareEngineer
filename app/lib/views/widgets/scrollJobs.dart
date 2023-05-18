@@ -19,6 +19,7 @@ class ScrollJobs extends StatelessWidget {
       height: screenHeight * 0.60,
       width: screenWidth * 0.8,
       child: ListView.builder(
+        key: const Key("jobList"),
         itemCount: jobs?.length,
         itemBuilder: (context, index) {
           return GestureDetector(
@@ -31,6 +32,7 @@ class ScrollJobs extends StatelessWidget {
               );
             },
             child: Container(
+              key: const Key("job"),
               padding: const EdgeInsets.all(25.0),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(25.0),
