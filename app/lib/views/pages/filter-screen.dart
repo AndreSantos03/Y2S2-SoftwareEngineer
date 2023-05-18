@@ -61,6 +61,7 @@ class _FilterScreenState extends State<FilterScreen> {
             children: [
               SizedBox(height: screenHeight * 0.03),
               RectangularButton(
+                key: const Key('useProfileAsFilterButton'),
                   text: '      Usar o meu perfil como filtro      ',
                   onPressed: () {
                     lsm.useAsFilter(context);
