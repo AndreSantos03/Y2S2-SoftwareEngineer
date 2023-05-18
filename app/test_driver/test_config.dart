@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter_gherkin/flutter_gherkin.dart';
 import 'package:gherkin/gherkin.dart';
 import 'package:glob/glob.dart';
+import 'steps/testFillField.dart';
 import 'steps/testGeneral.dart';
 import 'steps/testScroll.dart';
 
@@ -14,10 +15,14 @@ Future<void> main() {
       GivenIAmOnScreen(),
       ScrollFor2Seconds(),
       TapSomething(),
-      CheckSomething()
+      CheckSomething(),
+      FillField(),
     ]
     ..restartAppBetweenScenarios = true
     ..targetAppPath = "test_driver/app.dart";
+
+    // Run only 1 feature (comment this line to run all)
+    config.features = [r"test_driver/features/logIn.feature"];
 
     return GherkinRunner().execute(config);
 }

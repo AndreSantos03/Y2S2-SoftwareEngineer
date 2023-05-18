@@ -1,3 +1,4 @@
+# Acceptance test 2 - Iteration 2
 Feature: Filters page displays the correct information
   Scenario: Going to filter page and clicking on some filters
     Given I am on "mapScreen"

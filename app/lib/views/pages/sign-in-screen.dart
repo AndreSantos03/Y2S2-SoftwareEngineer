@@ -34,7 +34,7 @@ class _SignInScreenState extends State<SignInScreen> {
     double screenHeight = MediaQuery.of(context).size.height;
     double aspectRatio = MediaQuery.of(context).size.aspectRatio;
     return Scaffold(
-      key: const Key("singInScreen"),
+      key: const Key("signInScreen"),
       body:Stack(
         children: [
           GradientBackground(screenHeight: screenHeight),
@@ -86,6 +86,7 @@ class _SignInScreenState extends State<SignInScreen> {
               left: 0,
               right: 0,
               child: RectangularButton(
+                key: const Key('loginButton'),
                 text: "Login",
                 backGroundColor: const Color.fromRGBO(102, 152, 173, 1),
                 onPressed: signIn,
@@ -146,6 +147,7 @@ class _SignInScreenState extends State<SignInScreen> {
               ),
           ),
           Positioned(
+              key: const Key("arrowBackButton"),
               top: 0.07 * screenHeight,
               left: 0.06 *screenWidth,
               child: IconButton(
