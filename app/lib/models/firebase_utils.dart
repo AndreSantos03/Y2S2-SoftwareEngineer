@@ -1,5 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+
 
 import '../views/pages/map-screen.dart';
 
@@ -33,7 +35,15 @@ Future<void> firebaseSignUp(TextEditingController emailController, TextEditingCo
     final credential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
       email: emailController.text.trim(),
       password: passwordController.text.trim(),
-    );
+    ).then((value) {
+      FirebaseFirestore.instance.collection("users").doc(value.user?.uid).set(
+          {'java': false,
+          'javascript': false,
+            'python': false,
+            'remote': false,
+            'sql': false});
+    });
+
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => MapScreen()),
@@ -55,3 +65,4 @@ Future<void> firebaseSignUp(TextEditingController emailController, TextEditingCo
 String changeErrorMessage() {
   return errorMessage;
 }
+
