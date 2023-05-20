@@ -31,6 +31,7 @@ class _NavBarState extends State<NavBar> {
       selectedIndex: currentPageIndex,
       tabs: [
         GButton(
+          key: const Key("searchButton"),
           icon: Icons.search,
           onPressed: () {
             Navigator.push(
@@ -49,6 +50,7 @@ class _NavBarState extends State<NavBar> {
           },
         ),
         GButton(
+          key: const Key("userButton"),
           icon: Icons.verified_user,
           onPressed: () {
             final user = FirebaseAuth.instance.currentUser;

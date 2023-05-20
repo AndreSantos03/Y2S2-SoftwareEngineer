@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:myapp/views/pages/map-screen.dart';
 import 'package:myapp/views/pages/sign-up-screen.dart';
+import 'package:myapp/models/firebase_utils.dart';
 
 import '../widgets/inputTextBoxWidget.dart';
 import '../widgets/gradientBackground.dart';
@@ -18,7 +19,6 @@ class _SignInScreenState extends State<SignInScreen> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
-
   @override
   void dispose() {
     emailController.dispose();
@@ -32,8 +32,8 @@ class _SignInScreenState extends State<SignInScreen> {
 
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
-    double aspectRatio = MediaQuery.of(context).size.aspectRatio;
     return Scaffold(
+      key: const Key("signInScreen"),
       body:Stack(
         children: [
           GradientBackground(screenHeight: screenHeight),
@@ -85,9 +85,10 @@ class _SignInScreenState extends State<SignInScreen> {
               left: 0,
               right: 0,
               child: RectangularButton(
+                key: const Key('loginButton'),
                 text: "Login",
                 backGroundColor: const Color.fromRGBO(102, 152, 173, 1),
-                onPressed: signIn,
+                onPressed: () => signIn(emailController, passwordController, context),
                 horizontalMargin: 0.03 * screenWidth,
                     ),
             ),
@@ -145,6 +146,7 @@ class _SignInScreenState extends State<SignInScreen> {
               ),
           ),
           Positioned(
+              key: const Key("arrowBackButton"),
               top: 0.07 * screenHeight,
               left: 0.06 *screenWidth,
               child: IconButton(
@@ -165,28 +167,13 @@ class _SignInScreenState extends State<SignInScreen> {
       backgroundColor: Colors.black,
     );
   }
-
-  String errorMessage = '';
-
-  Future<void> signIn() async {
-    try {
-      final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: emailController.text.trim(),
-        password: passwordController.text.trim(),
-      );
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => MapScreen()),
-      );
-    } on FirebaseAuthException catch (e) {
-      if (e.code == 'user-not-found') {
-        errorMessage = 'User not found';
-      } else if (e.code == 'wrong-password') {
-        errorMessage = 'Password is incorrect.';
-      }
-    }
-    setState(() {}); // update the widget tree with the error message
+  Future<void> signIn(TextEditingController emailController, TextEditingController passwordController, BuildContext context) async {
+    firebaseSignIn(emailController, passwordController, context);
+    errorMessage = changeErrorMessage();
+    setState(() {});
   }
+
+
 
 
 }

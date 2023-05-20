@@ -41,6 +41,7 @@ class InputTextBox extends StatelessWidget {
             ),
             padding: const EdgeInsets.all(20.0),
             child: TextField(
+              key: Key('fill$hintText'),
               obscureText: obsText,
 
               controller: controller,

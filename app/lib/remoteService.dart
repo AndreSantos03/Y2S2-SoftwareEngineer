@@ -11,10 +11,9 @@ class RemoteService {
 
   // limit value is hard-coded, maybe we change this later
   Future<List<Job>?> getJobs({int limit = 5000, String q = ''}) async {
-    var client = http.Client();
-
+    var httpClient = http.Client();
     var uri = Uri.https(authority, '/job/search.json', {'api_key': apiKey, 'limit': limit.toString(), 'q': q});
-    var response = await client.get(uri);
+    var response = await httpClient.get(uri);
 
     if (response.statusCode == 200) {
       var json = jsonDecode(response.body);

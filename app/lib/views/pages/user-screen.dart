@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:myapp/models/firebase_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:myapp/utils.dart';
 import 'package:myapp/views/widgets/gradientBackground.dart';
@@ -13,7 +14,11 @@ import 'map-screen.dart';
 class UserScreen extends StatelessWidget {
   final TextEditingController usernameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
-
+  bool java = false;
+  bool javascript = false;
+  bool python = false;
+  bool remote = false;
+  bool sql = false;
   UserScreen({super.key});
 
   @override
@@ -22,6 +27,7 @@ class UserScreen extends StatelessWidget {
     double screenHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
+      key: const Key("userScreen"),
       bottomNavigationBar: const NavBar(pageNumber: 2),
       body: SingleChildScrollView(
         physics: const AlwaysScrollableScrollPhysics(),
@@ -157,5 +163,18 @@ class UserScreen extends StatelessWidget {
       print('Error while resetting password: $e');
     }
   }
+
+  void getUserInfo() async {
+    Map<String, dynamic>? userInfo = await readUserInfo(FirebaseAuth.instance.currentUser?.uid);
+    if (userInfo != null) {
+      python = userInfo['python'];
+      java = userInfo['java'];
+      javascript = userInfo['javascript'];
+      sql = userInfo['sql'];
+      remote = userInfo['remote'];
+    } else {
+      // User document does not exist
+      print('User information not found');
+    }    }
 
 }

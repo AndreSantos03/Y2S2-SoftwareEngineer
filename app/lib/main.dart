@@ -11,6 +11,7 @@ import 'package:myapp/models/filter_model.dart';
 import 'package:myapp/models/salary_model.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
+import 'package:flutter_driver/driver_extension.dart';
 
 import 'package:myapp/models/languages_remote_selection_model.dart';
 
@@ -23,7 +24,6 @@ Future main() async{
   // Fetch jobs and create JobsProvider instance
   final jobsProvider = JobsProvider();
   jobsProvider.fetchJobs();
-
 
   runApp(
     MultiProvider(

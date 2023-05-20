@@ -35,6 +35,8 @@ dependencies:
   http: ^0.13.5
   dart_numerics: ^0.0.6
   html: ^0.15.0-nullsafety.3
+  mockito: ^5.4.0
+  flutter_gherkin: ^2.0.0-nullsafety
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -43,10 +45,13 @@ dependencies:
   google_fonts: ^3.0.1
   firebase_core: ^2.10.0
   firebase_auth: ^4.4.2
-  cloud_firestore: ^4.5.3
+  cloud_firestore: ^4.7.1  # add dependency for Cloud Firestore
 
 dev_dependencies:
   flutter_test:
+    sdk: flutter
+
+  flutter_driver:
     sdk: flutter
 
   # The "flutter_lints" package below contains a set of recommended lints to
