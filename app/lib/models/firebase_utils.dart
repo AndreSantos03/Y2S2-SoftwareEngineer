@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 
@@ -61,6 +62,32 @@ Future<void> firebaseSignUp(TextEditingController emailController, TextEditingCo
   changeErrorMessage();
 
 }
+
+Future<Map<String, dynamic>?> readUserInfo(String? userId) async {
+  FirebaseFirestore firestore = FirebaseFirestore.instance;
+  DocumentSnapshot snapshot = await firestore.collection('users').doc(userId).get();
+
+  if (snapshot.exists) {
+    return snapshot.data() as Map<String, dynamic>;
+  } else {
+    return null; // User document does not exist
+  }
+}
+
+void fetchUserInfo(String userId) async {
+  Map<String, dynamic>? userInfo = await readUserInfo(userId);
+
+  if (userInfo != null) {
+    bool java = userInfo['java'];
+    bool javascript = userInfo['javascript'];
+    bool python = userInfo['python'];
+    bool sql = userInfo['sql'];
+    bool remote = userInfo['remote'];
+  } else {
+    print('User information not found');
+  }
+}
+
 
 String changeErrorMessage() {
   return errorMessage;
