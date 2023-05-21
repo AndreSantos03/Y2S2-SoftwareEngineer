@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:myapp/models/firebase_utils.dart';
 import 'package:myapp/views/pages/map-screen.dart';
 import 'package:myapp/views/pages/sign-in-screen.dart';
 
@@ -116,7 +117,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               child: RectangularButton(
                 text: "Sign Up",
                 backGroundColor: const Color.fromRGBO(102, 152, 173, 1),
-                onPressed: signUp,
+                onPressed: () => signUp(emailController, confirmEmailController, passwordController, confirmPasswordController, context)  ,
                 horizontalMargin: 0.03 * screenWidth,
               ),
             ),
@@ -170,7 +171,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   String errorMessage = '';
 
-  Future<void> signUp() async {
+  Future<void> signUp(TextEditingController emailController, TextEditingController confirmEmailController, TextEditingController passwordController, TextEditingController confirmPasswordController, BuildContext context) async {
     if (emailController.text.trim() != confirmEmailController.text.trim()) {
       errorMessage = 'Emails must match';
       return;
@@ -180,21 +181,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
       return;
     }
 
-   try {
-        final credential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
-          email: emailController.text.trim(),
-          password: passwordController.text.trim(),
-        );
+    firebaseSignUp(emailController,  passwordController, context);
+    errorMessage = changeErrorMessage();
 
-      } on FirebaseAuthException catch (e) {
-        if (e.code == 'weak-password') {
-          errorMessage = 'The password provided is too weak.';
-        } else if (e.code == 'email-already-in-use') {
-         errorMessage = 'An account already exists for that email.';
-        }
-      } catch (e) {
-        errorMessage = 'Invalid inputs';
-      }
     setState(() {}); // update the widget tree with the error message
   }
 
