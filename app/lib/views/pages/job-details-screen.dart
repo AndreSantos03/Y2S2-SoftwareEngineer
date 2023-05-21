@@ -94,6 +94,7 @@ class JobDetailsScreen extends StatelessWidget {
 
 
     return Scaffold(
+      key: const Key('jobDetailsScreen'),
       bottomNavigationBar: const NavBar(
         pageNumber: 1,
       ),
