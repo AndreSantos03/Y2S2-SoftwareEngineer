@@ -22,6 +22,9 @@ You can find here details about the product, from a high-level vision to low-lev
 
 Please contact us! 
 
+Notes:
+- We did not complete last 2 user stories because of a lack of time. They are 'could haves', not essential to the app.
+
 Thank you!
 
 António Rama,
