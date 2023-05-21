@@ -34,7 +34,7 @@ class UserScreen extends StatelessWidget {
         child: Stack(
           children: [
             GradientBackground(
-                screenHeight: screenHeight + screenHeight * 0.55),
+                screenHeight: screenHeight),
             Positioned(
               top: screenHeight * 0.1,
               left: 0,
@@ -52,32 +52,7 @@ class UserScreen extends StatelessWidget {
               ),
             ),
             Positioned(
-                top: screenHeight * 0.18,
-                left: 0,
-                right: 0,
-                child: InputTextBox(
-                  controller: usernameController,
-                  topText: 'Nome de utilizador:',
-                  hintText: '(username : firebase)',
-                  obsText: false,
-                )),
-            Positioned(
-                top: screenHeight * 0.38,
-                left: 0,
-                right: 0,
-                child: InputTextBox(
-                  controller: emailController,
-                  topText: 'Email:',
-                  hintText: '(email : firebase)',
-                  obsText: false,
-                )),
-            Positioned(
-                top: screenHeight * 0.55,
-                left: 0,
-                right: 0,
-                child: RectangularButton(text: 'Save', onPressed: () {}, horizontalMargin: screenWidth * 0.15, backGroundColor: const Color.fromRGBO(102, 152, 173, 1))),
-            Positioned(
-              top: screenHeight * 0.66,
+              top: screenHeight * 0.20,
               left: screenWidth * 0.05,
               child: Text(
                 'Password:',
@@ -92,7 +67,7 @@ class UserScreen extends StatelessWidget {
               ),
             ),
             Positioned(
-                top: screenHeight * 0.71,
+                top: screenHeight * 0.25,
                 left: screenWidth * 0.048,
                 right: screenWidth * 0.35,
                 child: RectangularButton(
@@ -102,7 +77,7 @@ class UserScreen extends StatelessWidget {
                   backGroundColor: const Color.fromRGBO(102, 152, 173, 1),
                 )),
             Positioned(
-              top: screenHeight * 0.83,
+              top: screenHeight * 0.40,
               left: 0,
               right: 0,
               child: Column(

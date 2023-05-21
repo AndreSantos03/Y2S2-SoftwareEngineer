@@ -22,7 +22,7 @@ Future<void> main() {
     ..targetAppPath = "test_driver/app.dart";
 
     // Run only 1 feature (comment this line to run all)
-    config.features = [r"test_driver/features/checkRegisterScreen.feature"];
+    // config.features = [r"test_driver/features/checkRegisterScreen.feature"];
 
     return GherkinRunner().execute(config);
 }
