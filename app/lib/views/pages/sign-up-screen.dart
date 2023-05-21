@@ -41,6 +41,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
     double screenHeight = MediaQuery.of(context).size.height;
     double aspectRatio = MediaQuery.of(context).size.aspectRatio;
     return Scaffold(
+      key: const Key("signUpScreen"),
       body:Stack(
           children: [
             GradientBackground(screenHeight: screenHeight),

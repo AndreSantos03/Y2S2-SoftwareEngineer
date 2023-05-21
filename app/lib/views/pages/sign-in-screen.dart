@@ -122,6 +122,7 @@ class _SignInScreenState extends State<SignInScreen> {
             left: 0,
             right: 0,
               child: TextButton(
+                key: const Key('noAccount'),
                 onPressed: () {
                   Navigator.push(
                     context,
