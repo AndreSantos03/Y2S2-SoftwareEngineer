@@ -6,7 +6,7 @@ You can find here details about the product, from a high-level vision to low-lev
 
 * Business modeling 
   * [Product Vision](https://github.com/FEUP-LEIC-ES-2022-23/2LEIC14T4/blob/main/docs/ProductVision.md)
-  * Elevator Pitch
+  * [Elevator Pitch](https://github.com/FEUP-LEIC-ES-2022-23/2LEIC14T4/blob/main/docs/ElevatorPitch.md)
 * Requirements
   * [User stories](https://github.com/orgs/FEUP-LEIC-ES-2022-23/projects/57)
   * [Domain model](https://github.com/FEUP-LEIC-ES-2022-23/2LEIC14T4/blob/main/images/Domain%20Model.png)
